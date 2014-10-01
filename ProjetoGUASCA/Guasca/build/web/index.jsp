@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Index page Guasca</title>
+        <title>Index page</title>
         <%@include file="includes.jsp" %>
     </head>
     <body>        
