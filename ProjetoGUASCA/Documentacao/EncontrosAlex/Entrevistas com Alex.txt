@@ -1,0 +1,60 @@
+#Entrevista em 27/08/014:
+
+Os horários são planejados no final do semestre anterior.
+- não no próprio semestre
+- não nas férias
+- Ex: os horários de 2015/01 serão finalizados em 2014/02
+
+Períodos:
+
+- Manhã: 07:30 às 12
+-- intervalo das 10 às 10:20
+-- 3 x 2 períodos
+
+- Tarde: 13:30 às 18
+-- intervalo das 16 às 16:20
+-- 3x2
+
+- Noite: 18:10 às 22:30
+-- intervalo das 20:40 às 20:50 (intervalo reduzido, para sair mais cedo)
+-- 3x2
+
+
+Passo 1:
+- Alex encaminha um e-mail com formulário para os professores, com orientações, mas com principal objetivo de saber as INDISPONIBILIDADES de horários, além da justificativa.
+- As justificativas são analisadas e pontuadas por prioridade, que tem um padrão.
+-- A prioridade 2 é exclusiva para professores temporários ou que não são dedicação exclusiva
+
+Passo 2:
+- Alex se reune com os coordenadores dos cursos
+- Reunião com professores por área
+- Carga horária vs disciplinas: se algum professor está com pouca carga horária ou disciplina, será alocado para outra disciplina da área que está sem professor.
+
+- Pontos Importantes ao montar os horários:
+-- O professor está em determinado turno
+-- Preencher as turmas/disciplinas que o professor estará aqui no campus
+--- Ex.: um professor dá 3 períodos antes do intervalo para uma turma e 2 períodos para outra, preenchendo o turno da manhã
+--- Algumas disciplinas ocupam um turno inteiro (ex, Roben com Tópicos Avançados).
+--- Curso Superior e Subsequente são, preferencialmente, distribuídos em janela cheia (turno cheio).
+-- Um professor não será alocado para manhã e noite, exceto se for solicitado
+-- Se o professor sair no último horário da noite, não poderá estar alocado para o primeiro período do dia seguinte (12 horas de descanso, por legislação), podendo ficar para os 2 últimos períodos da manhã (pós intervalo)
+-- Os dias de aula são entre 3 ou, no máximo, 4 dias, sendo pelo menos 1 dia para pesquisa, extensão ou organização do professor
+-- disciplinas com 6 créditos tem preferencia para o início da noite, não no final
+-- disciplinas com períodos presenciais e não presencial tem preferencia para o início da noite, não no final
+-- qual número de disciplinas precisa de laboratórios específicos na semana?
+
+Infra:
+- 4 labs de info (2 mistos: info + linguas e info + eletrônica)
+
+Problemas atuais:
+-- Idiomas não consegue trabalhar uma manhã inteira (dani, português, superior)
+
+Primeiras Restrições (constraints):
+- horários que os professores não podem
+- disciplinas inteiras ou quebradas
+- posição das disciplinas nos turnos
+- infraestrutura
+- o professor tem que ter, pelo menos 1 dia livre
+- o professor não pode dar duas disciplinas ao mesmo tempo
+- mais de um professor pode dar a mesma disciplina, no mesmo horário, para diferentes turmas
+- padagogicamente, pelo menos dois períodos seguidos uma mesma disciplina deve ter
