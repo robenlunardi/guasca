@@ -1,16 +1,14 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package guasca.controle;
 
-import guasca.controle.ferramentas.DiasSemana;
-import guasca.dao.AreaDao;
-import guasca.modelo.Area;
+package guasca.controle.security;
+
+import guasca.modelo.Sala;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,15 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Douglas
+ * @author 4DS
  */
-@WebServlet(name = "ControleGeral", urlPatterns = {"/ControleGeral"})
-public class ControleGeral extends HttpServlet {
+@WebServlet(name = "ControleSala", urlPatterns = {"/ControleSala"})
+public class ControleSala extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -37,47 +34,43 @@ public class ControleGeral extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-
-            String formulario = request.getParameter("formulario");
-
-            if (formulario.equals("cadastroArea")) {
-
-                request.getRequestDispatcher("cadastroArea.jsp").forward(request, response);
-
-            } else if (formulario.equals("cadastroProfessor")) {
-                List<Area> listaAreas = new ArrayList<Area>();
-                AreaDao aDao = new AreaDao();
-                listaAreas = aDao.buscarAreas();
+         try {
+            
+            String action = request.getParameter("action");
+            
+            if(action.equals("cadastrarSala")){
                 
-                String[][] diasTurnos = new String[3][6];
+                int idSala = Integer.parseInt(request.getParameter("sala"));
+                String nome = request.getParameter("nomeSala");
+                String tipo = request.getParameter("tipoSala");
+                int quantAlunos = Integer.parseInt(request.getParameter("quantidadeAlunos"));
                 
-                DiasSemana dias = new DiasSemana();
-                diasTurnos = dias.concatenarDiaTurno();
                 
-                request.setAttribute("listaAreas", listaAreas);
-                request.setAttribute("listaDiasTurnos", diasTurnos);
-                request.getRequestDispatcher("cadastroProfessor.jsp").forward(request, response);
-            } else  if (formulario.equals("cadastroSala")) {
-
-                request.getRequestDispatcher("cadastroSala.jsp").forward(request, response);
-
-            } else {
+                    Sala sal = new Sala();
+                    sal.setIdSala(idSala);
+                    sal.setNome(nome);
+                    sal.setTipo(tipo);
+                    sal.setQuantAlunos(quantAlunos);
+                    
+                
+                
+                      
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                
+            }else{
                 throw new Exception("Página não localizada.");
             }
-
+            
         } catch (Exception e) {
             System.out.println("Erro no log: " + e.getCause());
             request.setAttribute("mensagem", e.getMessage());
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -91,8 +84,7 @@ public class ControleGeral extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -114,4 +106,5 @@ public class ControleGeral extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
