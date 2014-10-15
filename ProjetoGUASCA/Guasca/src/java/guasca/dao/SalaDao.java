@@ -29,9 +29,12 @@ public class SalaDao implements SalaInterface{
         try {
 
             conexao = Conexao.abrirConexao();
-            ps = conexao.prepareStatement("insert into sala (nome) values (?)");
-
-            ps.setString(1, nova.getNome());
+            ps = conexao.prepareStatement("insert into sala (qtdAlunos, nome, tipo) values (?,?,?)");
+            
+            
+            ps.setInt(1, nova.getQuantAlunos());
+            ps.setString(2, nova.getNome());
+            ps.setString(3, nova.getTipo());
             ps.execute();
 
         } catch (Exception e) {

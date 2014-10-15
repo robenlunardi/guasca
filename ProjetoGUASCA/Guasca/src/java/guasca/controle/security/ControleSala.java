@@ -6,6 +6,7 @@
 
 package guasca.controle.security;
 
+import guasca.dao.SalaDao;
 import guasca.modelo.Sala;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,20 +41,19 @@ public class ControleSala extends HttpServlet {
             
             if(action.equals("cadastrarSala")){
                 
-                int idSala = Integer.parseInt(request.getParameter("sala"));
                 String nome = request.getParameter("nomeSala");
                 String tipo = request.getParameter("tipoSala");
                 int quantAlunos = Integer.parseInt(request.getParameter("quantidadeAlunos"));
                 
                 
                     Sala sal = new Sala();
-                    sal.setIdSala(idSala);
                     sal.setNome(nome);
                     sal.setTipo(tipo);
                     sal.setQuantAlunos(quantAlunos);
                     
-                
-                
+                    SalaDao salaDao = new SalaDao();
+                    salaDao.cadastrarSala(sal);
+                                   
                       
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 

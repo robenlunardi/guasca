@@ -29,18 +29,14 @@
                 </label>
                 <input type="text" id="tipoSala" name="tipoSala"><br><br>
                 <br>
-                <label for="descricaoArea">
+                <label for="quantidadeAlunos">
                     Quantidade de Alunos:
                 </label>
-                <input type="text" id="descricaoArea" name="descricaoArea"><br><br>
+                <input type="text" id="quantidadeAlunos" name="quantidadeAlunos"><br><br>
                 <br>
-                <label for="disciplinaSala">
-                    Disciplina:
-                </label>
-                <input type="text" id="disciplinaSala" name="disciplinaSala"><br><br>
 
                 <input class="botaoForm" type="submit" value="Cadastrar">
-
+               
             </fieldset>
         </form>
     </body>

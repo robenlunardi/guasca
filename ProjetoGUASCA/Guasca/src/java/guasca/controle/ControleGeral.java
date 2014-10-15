@@ -62,6 +62,10 @@ public class ControleGeral extends HttpServlet {
 
                 request.getRequestDispatcher("cadastroSala.jsp").forward(request, response);
 
+            } else  if (formulario.equals("consultaDisponibilidadeSala")) {
+
+                request.getRequestDispatcher("consultarDisponibilidadeSalas.jsp").forward(request, response);
+
             } else {
                 throw new Exception("Página não localizada.");
             }
