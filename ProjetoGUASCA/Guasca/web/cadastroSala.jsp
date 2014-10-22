@@ -24,10 +24,12 @@
                 <input type="text" id="nomeSala" name="nomeSala"><br><br>
                 
                 <br>
-                <label for="tipoSala">
+                <label for="tipoSala1">
                    Tipo:
                 </label>
-                <input type="text" id="tipoSala" name="tipoSala"><br><br>
+                <%@include file="includeTipoSala.jsp" %>
+                <br>
+                <br>
                 <br>
                 <label for="quantidadeAlunos">
                     Quantidade de Alunos:
