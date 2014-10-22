@@ -10,6 +10,7 @@ import guasca.dao.SalaDao;
 import guasca.modelo.Sala;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author 4DS
+ * @author Aluno
  */
-@WebServlet(name = "ControleSala", urlPatterns = {"/ControleSala"})
-public class ControleSala extends HttpServlet {
+@WebServlet(name = "ControleSala2", urlPatterns = {"/ControleSala2"})
+public class ControleSala2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,32 +36,43 @@ public class ControleSala extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         try {
-            
+        try {
+
             String action = request.getParameter("action");
-            
-            if(action.equals("cadastrarSala")){
-                
+
+            if (action.equals("cadastrarSala")) {
+
                 String nome = request.getParameter("nomeSala");
                 String tipo = request.getParameter("tipoSala");
                 int quantAlunos = Integer.parseInt(request.getParameter("quantidadeAlunos"));
-                
-                
-                    Sala sal = new Sala();
-                    sal.setNome(nome);
-                    sal.setTipo(tipo);
-                    sal.setQuantAlunos(quantAlunos);
-                    
-                    SalaDao salaDao = new SalaDao();
-                    salaDao.cadastrarSala(sal);
-                                   
-                      
+
+                Sala sal = new Sala();
+                sal.setNome(nome);
+                sal.setTipo(tipo);
+                sal.setQuantAlunos(quantAlunos);
+
+                SalaDao salaDao = new SalaDao();
+                salaDao.cadastrarSala(sal);
+
                 request.getRequestDispatcher("index.jsp").forward(request, response);
-                
-            }else{
+            } else if (action.equals("listarSala")) {// Parte de consulta ###############################
+                try {
+
+                    SalaDao sdao = new SalaDao();
+                    List<Sala> lista = sdao.buscarSalas();
+
+                    request.setAttribute("listasala", lista);
+                    request.getRequestDispatcher("listarSala.jsp").forward(request, response);
+                } catch (Exception e) {
+                    System.out.println("Erro no log: " + e.getCause());
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+
+                }
+
                 throw new Exception("Página não localizada.");
             }
-            
+
         } catch (Exception e) {
             System.out.println("Erro no log: " + e.getCause());
             request.setAttribute("mensagem", e.getMessage());
