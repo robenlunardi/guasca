@@ -5,10 +5,7 @@
     };
     Arrays.sort(tipoSala);
 %>
-<label for="labelArea">
-    Tipo de Sala:
-</label>
-<select name="area">
+<select name="tipoSala1">
     <%
         for (int i = 0; i < tipoSala.length; i++) {
     %>
