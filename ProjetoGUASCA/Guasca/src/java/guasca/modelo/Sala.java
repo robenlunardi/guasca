@@ -35,9 +35,11 @@ public class Sala {
         
     }
 
-    public Sala(int idSala, String nome) {
+     public Sala(int idSala, String nome , String tipo, int quantAlunos) {
         this.idSala = idSala;
         this.nome = nome;
+        this.tipo = tipo;
+        this.quantAlunos = quantAlunos;
     }
 
     

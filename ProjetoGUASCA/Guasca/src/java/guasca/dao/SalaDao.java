@@ -75,10 +75,9 @@ public class SalaDao implements SalaInterface{
             
             Sala sala;
             
-            while(rs.next()){
+             while (rs.next()) {
                 sala = new Sala(
-                          rs.getInt("id_sala")
-                        , rs.getString("nome"));
+                        rs.getInt("id_sala"), rs.getString("nome"), rs.getString("tipo"), rs.getInt("qtdAlunos"));
                 lista.add(sala);
             }
             

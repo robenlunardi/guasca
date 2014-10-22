@@ -17,14 +17,11 @@
             <input type="hidden" name="action" value="consultaDisponibilidadeSala"/>
             <fieldset>
                 <legend>Consultar Disponibilidade de Salas</legend>
-                <br>
-                <label for="tipoSala">
-                   Tipo:
-                </label>
-                <input type="text" id="tipoSala" name="tipoSala"><br><br>
-                <br>
-                
+                <br> <br> <br>
+                              
                 <a class="botaoMenu" href="ControleGeral?formulario=cadastroSala" >Cadastrar Sala</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="botaoMenu" href="ControleGeral?formulario=listarSala" >Listar Sala</a>
                              
             </fieldset>
         </form>
