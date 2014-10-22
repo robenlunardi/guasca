@@ -172,7 +172,7 @@ ENGINE = InnoDB;
 -- Table `guasca`.`sala`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`sala` (
-  `id_sala` INT(11) NOT NULL ,
+  `id_sala` INT(11) NOT NULL AUTO_INCREMENT ,
   `qtdAlunos` INT(11) NOT NULL ,
   `nome` VARCHAR(45) NOT NULL ,
   `tipo` VARCHAR(45) NOT NULL ,
@@ -220,6 +220,7 @@ CREATE  TABLE IF NOT EXISTS `guasca`.`turma` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+USE `guasca` ;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
