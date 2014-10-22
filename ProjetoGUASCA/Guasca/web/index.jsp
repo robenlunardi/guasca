@@ -16,6 +16,7 @@
         <a class="botaoMenu" href="ControleGeral?formulario=cadastroArea" >Cadastrar Área</a>
         <a class="botaoMenu" href="ControleGeral?formulario=cadastroProfessor" >Cadastrar Professor</a>
         <a class="botaoMenu" href="ControleGeral?formulario=consultaDisponibilidadeSala" >Cadastrar Sala</a>
+        <a class="botaoMenu" href="ControleGeral?formulario=cadastroDisciplina" >Cadastrar Disciplina</a>
         <%
             String msg = (String) request.getAttribute("mensagem");
             if (msg != null) {
