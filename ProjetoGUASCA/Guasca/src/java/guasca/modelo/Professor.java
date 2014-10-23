@@ -25,6 +25,11 @@ public class Professor {
         this.nome = nome;
         this.email = email;
     }
+    
+    public Professor(int idProfessor, String nome) {
+        this.nome = nome;
+        this.idProfessor = idProfessor;
+    }
 
     public Professor(int idProfessor, String matricula, String nome, String email, int idIndisponibilidade) {
         this.idProfessor = idProfessor;
