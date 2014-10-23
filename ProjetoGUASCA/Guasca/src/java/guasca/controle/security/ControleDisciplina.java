@@ -4,10 +4,15 @@
  */
 package guasca.controle.security;
 
+import guasca.dao.AreaDao;
 import guasca.dao.DisciplinaDao;
+import guasca.dao.ProfessorDao;
+import guasca.modelo.Area;
 import guasca.modelo.Disciplina;
+import guasca.modelo.Professor;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,21 +40,60 @@ public class ControleDisciplina extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            
+
             String action = request.getParameter("action");
-            
-            if(action.equals("cadastrarArea")){
-                String descricao = request.getParameter("descricaoArea");
-                Disciplina disciplina = new Disciplina(descricao);
+
+            if (action.equals("cadastrarDisciplina")) {
+                String nomeDisciplina = request.getParameter("nomeDisciplina");
+                String professor1 = request.getParameter("professor1");
+                String professor2 = request.getParameter("professor2");
+                String areaDisciplina = request.getParameter("areaDisciplina");
+                String tipoSala1 = request.getParameter("tipoSala1");
+                String creditos1 = request.getParameter("creditos1");
+                String tipoSala2 = request.getParameter("tipoSala2");
+                String creditos2 = request.getParameter("creditos2");
+                String turno = request.getParameter("turno");
+                String quantAlunos = request.getParameter("quantAlunos");
+                
+                Disciplina disciplina = new Disciplina();
+                disciplina.setNome(nomeDisciplina);
+                disciplina.setId_professor1(Integer.parseInt(professor1));
+                disciplina.setId_professor2(Integer.parseInt(professor2));
+                disciplina.setId_area(Integer.parseInt(areaDisciplina));
+                disciplina.setTipo_sala1(tipoSala1);
+                disciplina.setQtd_creditos1(Integer.parseInt(creditos1));
+                disciplina.setTipo_sala2(tipoSala2);
+                disciplina.setQtd_creditos2(Integer.parseInt(creditos2));
+                disciplina.setTurno(turno);
+                disciplina.setQtd_alunos(Integer.parseInt(quantAlunos));
+                
                 DisciplinaDao disciplinaDao = new DisciplinaDao();
                 disciplinaDao.cadastrarDisciplina(disciplina);
-                
+
                 request.getRequestDispatcher("index.jsp").forward(request, response);
-                
-            }else{
+
+            } else if (action.equals("carregarListas")) {
+                try {
+                    List<Area> listaAreas = new ArrayList<Area>();
+                    AreaDao aDao = new AreaDao();
+                    listaAreas = aDao.buscarAreas();
+                    
+                    List<Professor> listaProfessores = new ArrayList<Professor>();
+                    ProfessorDao pDao = new ProfessorDao();
+                    listaProfessores = pDao.buscarProfessores();
+                    
+                    request.setAttribute("listaProfessores", listaProfessores);
+                    request.setAttribute("listaAreas", listaAreas);
+                    //request.setAttribute("listasala", lista);
+                    request.getRequestDispatcher("cadastroDisciplina.jsp").forward(request, response);
+                } catch (Exception e) {
+                    System.out.println("Erro no log: " + e.getCause());
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
+            } else {
                 throw new Exception("Página não localizada.");
             }
-            
         } catch (Exception e) {
             System.out.println("Erro no log: " + e.getCause());
             request.setAttribute("mensagem", e.getMessage());
