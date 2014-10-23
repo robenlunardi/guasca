@@ -25,11 +25,11 @@ public class DisciplinaDao implements DisciplinaInterface{
 
         try {
 
-            conexao = Conexao.abrirConexao();
-            ps = conexao.prepareStatement("insert into disciplina (nome) values (?)");
-
-            ps.setString(1, nova.getDescricao());
-            ps.execute();
+//            conexao = Conexao.abrirConexao();
+//            ps = conexao.prepareStatement("insert into disciplina (nome) values (?)");
+//
+//            ps.setString(1, nova.getNome());
+//            ps.execute();
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
