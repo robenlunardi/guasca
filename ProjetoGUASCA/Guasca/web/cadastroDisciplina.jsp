@@ -4,6 +4,9 @@
     Author     : Paula
 --%>
 
+<%@page import="guasca.modelo.Professor"%>
+<%@page import="guasca.modelo.Area"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,22 +30,48 @@
                 </label>
                 <select name="professor1">
                     <option value="-1">Selecione:</option>
-                    <option value="0"></option>
+                        <%
+                            List<Professor> pLista = (List<Professor>) request.getAttribute("listaProfessores");
+                            for (int i = 0; i < pLista.size(); i++) {
+
+                        %>
+                        <option value="<%= pLista.get(i).getIdProfessor()%>">
+                            <%= pLista.get(i).getNome()%>
+                        </option>
                 </select>
                 <label for="professor2">
                     Professor:
                 </label>
                 <select name="professor2">
                     <option value="-1">Selecione:</option>
-                    <option value="0"></option>
+                        <option value="<%= pLista.get(i).getIdProfessor()%>">
+                            <%= pLista.get(i).getNome()%>
+                        </option>
+                        <%
+                            }
+                        %>
+                </select>
+                <label for="areaDisciplina">
+                    Área:
+                </label>
+                <select name="areaDisciplina">
+                    <option value="-1">Selecione:</option>
+                        <%
+                            List<Area> aLista = (List<Area>) request.getAttribute("listaAreas");
+                            for (int i = 0; i < aLista.size(); i++) {
+
+                        %>
+                        <option value="<%= aLista.get(i).getIdArea()%>">
+                            <%= aLista.get(i).getDescricao()%>
+                        </option>
+                        <%
+                            }
+                        %>
                 </select>
                 <br><br>
                 <label for="tipoSala1">
                     Tipo de Sala 1:
                 </label>
-
-
-
                 <%@include file="includeTipoSala.jsp" %>
                 <label for="creditos1">
                     Créditos:
