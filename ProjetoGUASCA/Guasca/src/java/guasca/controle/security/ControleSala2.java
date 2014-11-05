@@ -43,7 +43,7 @@ public class ControleSala2 extends HttpServlet {
             if (action.equals("cadastrarSala")) {
 
                 String nome = request.getParameter("nomeSala");
-                String tipo = request.getParameter("tipoSala");
+                String tipo = request.getParameter("tipoSala1");
                 int quantAlunos = Integer.parseInt(request.getParameter("quantidadeAlunos"));
 
                 Sala sal = new Sala();
