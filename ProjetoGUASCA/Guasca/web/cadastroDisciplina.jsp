@@ -100,15 +100,15 @@
                 <label class="radioManha" for="manha" >
                     Turno:
                 </label>
-                <input type="radio" id="manha" name="turno" value="m"/>
+                <input type="radio" id="manha" name="turno" value="0"/>
                 <label class="radioManha" for="manha" >
                     Manhã
                 </label>
-                <input type="radio" id="tarde" name="turno" value="t"/>
+                <input type="radio" id="tarde" name="turno" value="1"/>
                 <label class="radioTarde" for="Tarde">
                     Tarde
                 </label>
-                <input type="radio" id="noite" name="turno" value="n"/>
+                <input type="radio" id="noite" name="turno" value="2"/>
                 <label class="radioNoite" for="Noite">
                     Noite
                 </label>
