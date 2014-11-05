@@ -13,7 +13,7 @@
         <title>Cadastro de Salas</title>
     </head>
     <body>
-        <form action="ControleSala">
+        <form action="ControleSala2">
             <input type="hidden" name="action" value="cadastrarSala"/>
             <fieldset>
                 <legend>Cadastro de sala</legend>
