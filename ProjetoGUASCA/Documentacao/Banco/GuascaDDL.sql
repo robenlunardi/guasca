@@ -9,7 +9,7 @@ USE `guasca` ;
 -- Table `guasca`.`area`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`area` (
-  `id_area` INT(11) NOT NULL ,
+  `id_area` INT(11) NOT NULL AUTO_INCREMENT ,
   `nome` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`id_area`) )
 ENGINE = InnoDB
@@ -21,7 +21,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `guasca`.`indisponibilidade`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`indisponibilidade` (
-  `id_ind` INT(11) NOT NULL ,
+  `id_ind` INT(11) NOT NULL AUTO_INCREMENT ,
   `id_prof` INT(11) NULL DEFAULT NULL ,
   `segM` INT(11) NULL DEFAULT NULL ,
   `segT` INT(11) NULL DEFAULT NULL ,
@@ -50,7 +50,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `guasca`.`professor`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`professor` (
-  `id_professor` INT(11) NOT NULL ,
+  `id_professor` INT(11) NOT NULL AUTO_INCREMENT ,
   `matricula` VARCHAR(7) NOT NULL ,
   `nome` VARCHAR(45) NOT NULL ,
   `email` VARCHAR(45) NOT NULL ,
@@ -70,7 +70,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `guasca`.`professor_has_area`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`professor_has_area` (
-  `id_professor_has_area` INT(11) NOT NULL ,
+  `id_professor_has_area` INT(11) NOT NULL AUTO_INCREMENT ,,
   `id_professor` INT(11) NOT NULL ,
   `id_area` INT(11) NOT NULL ,
   INDEX `idx_area_id` (`id_area` ASC) ,
@@ -94,7 +94,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `guasca`.`dia_turno`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`dia_turno` (
-  `id_dia_turno` INT NOT NULL ,
+  `id_dia_turno` INT(11) NOT NULL AUTO_INCREMENT ,
   `cod_dia` INT(1) NULL ,
   `cod_turno` INT(1) NULL ,
   `dia_periodo` INT(1) NULL ,
@@ -106,7 +106,7 @@ ENGINE = InnoDB;
 -- Table `guasca`.`credito`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`credito` (
-  `id_credito` INT(11) NOT NULL ,
+  `id_credito` INT(11) NOT NULL AUTO_INCREMENT ,
   `id_dia_turno` INT NULL ,
   PRIMARY KEY (`id_credito`) ,
   INDEX `fk_credito_dia_turno1_idx` (`id_dia_turno` ASC) ,
@@ -122,11 +122,13 @@ ENGINE = InnoDB;
 -- Table `guasca`.`disciplina`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`disciplina` (
-  `id_disciplina` INT(11) NOT NULL ,
+  `id_disciplina` INT(11) NOT NULL AUTO_INCREMENT ,
   `qtdAlunos` INT(3) NOT NULL ,
   `qtdCreditos` INT(3) NOT NULL ,
   `nome` VARCHAR(45) NOT NULL ,
   `turno` VARCHAR(45) NOT NULL ,
+  `tipo_sala1` VARCHAR(45),
+  `tipo_sala2` VARCHAR(45),
   `id_area` INT(11) NULL ,
   `id_credito` INT(11) NULL ,
   PRIMARY KEY (`id_disciplina`) ,
@@ -149,7 +151,7 @@ ENGINE = InnoDB;
 -- Table `guasca`.`disciplina_has_professor`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`disciplina_has_professor` (
-  `id_disciplina_has_professor` INT(11) NOT NULL ,
+  `id_disciplina_has_professor` INT(11) NOT NULL AUTO_INCREMENT ,
   `id_disciplina` INT(11) NOT NULL ,
   `id_professor` INT(11) NOT NULL ,
   PRIMARY KEY (`id_disciplina_has_professor`) ,
@@ -191,7 +193,7 @@ ENGINE = InnoDB;
 -- Table `guasca`.`curso`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`curso` (
-  `id_curso` INT(11) NOT NULL ,
+  `id_curso` INT(11) NOT NULL AUTO_INCREMENT ,
   `nome` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`id_curso`) )
 ENGINE = InnoDB;
