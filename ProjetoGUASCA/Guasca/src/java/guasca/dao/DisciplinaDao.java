@@ -9,6 +9,7 @@ import guasca.util.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,19 +18,35 @@ import java.util.List;
  * @author Paula
  */
 public class DisciplinaDao implements DisciplinaInterface{
+    private int id_credito;
+    private int id_disciplina;
+    
  
     @Override
     public void cadastrarDisciplina(Disciplina nova) throws Exception {
         Connection conexao = null;
         PreparedStatement ps = null;
+        ResultSet rs = null;
 
         try {
 
-//            conexao = Conexao.abrirConexao();
-//            ps = conexao.prepareStatement("insert into disciplina (nome) values (?)");
-//
-//            ps.setString(1, nova.getNome());
-//            ps.execute();
+            conexao = Conexao.abrirConexao();
+            ps = conexao.prepareStatement("insert into disciplina (nome, qtdAlunos, turno, tipo_sala1, tipo_sala2) values (?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+
+            ps.setString(1, nova.getNome());
+            ps.setInt(2, nova.getQtd_alunos());
+            ps.setInt(3, nova.getTurno());
+            ps.setString(4, nova.getTipo_sala1());
+            ps.setString(5, nova.getTipo_sala2());
+            ps.executeUpdate();
+            
+            rs = ps.getGeneratedKeys();
+            
+            if(rs.next()){
+                id_disciplina = rs.getInt(1);
+            }
+            
+            cadastrarCreditos(nova);
 
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
@@ -38,6 +55,46 @@ public class DisciplinaDao implements DisciplinaInterface{
             ps.close();
             conexao.close();
         }
+    }
+    
+    public void cadastrarCreditos(Disciplina nova) throws Exception{
+        Connection conexao = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        nova.getQtd_creditos1();
+        nova.getQtd_creditos2();
+
+        try {
+
+            conexao = Conexao.abrirConexao();
+            ps = conexao.prepareStatement("insert into credito (valor) values()",Statement.RETURN_GENERATED_KEYS);
+
+            
+            
+            ps.setInt(1, nova.getTurno());
+            ps.setInt(2, nova.getQtd_alunos());
+            ps.executeUpdate();
+            
+            rs = ps.getGeneratedKeys();
+            
+            if(rs.next()){
+                id_credito = rs.getInt(1);
+            }
+            
+            cadastrarDisciplina_has_Creditos(id_credito, id_disciplina);
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            throw new Exception(e.getMessage());
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+    }
+    
+     private void cadastrarDisciplina_has_Creditos(int id_credito, int id_disciplina) {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
     @Override
