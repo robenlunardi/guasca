@@ -70,7 +70,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `guasca`.`professor_has_area`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`professor_has_area` (
-  `id_professor_has_area` INT(11) NOT NULL AUTO_INCREMENT ,,
+  `id_professor_has_area` INT(11) NOT NULL AUTO_INCREMENT ,
   `id_professor` INT(11) NOT NULL ,
   `id_area` INT(11) NOT NULL ,
   INDEX `idx_area_id` (`id_area` ASC) ,
