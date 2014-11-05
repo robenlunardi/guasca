@@ -17,6 +17,11 @@ public class Disciplina {
     private int qtd_creditos1;
     private int qtd_creditos2;
     private String nome;
+    private int turno;
+    private String tipo_sala1;
+    private String tipo_sala2;
+    private int id_area;
+    private int id_credito;
 
     public int getQtd_creditos1() {
         return qtd_creditos1;
@@ -33,11 +38,6 @@ public class Disciplina {
     public void setQtd_creditos2(int qtd_creditos2) {
         this.qtd_creditos2 = qtd_creditos2;
     }
-    private String turno;
-    private String tipo_sala1;
-    private String tipo_sala2;
-    private int id_area;
-    private int id_credito;
 
     public Disciplina() {
     }
@@ -71,11 +71,11 @@ public class Disciplina {
         this.nome = nome;
     }
 
-    public String getTurno() {
+    public int getTurno() {
         return turno;
     }
 
-    public void setTurno(String turno) {
+    public void setTurno(int turno) {
         this.turno = turno;
     }
 
