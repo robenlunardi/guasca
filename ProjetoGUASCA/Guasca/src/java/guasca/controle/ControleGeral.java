@@ -6,7 +6,9 @@ package guasca.controle;
 
 import guasca.controle.ferramentas.DiasSemana;
 import guasca.dao.AreaDao;
+import guasca.dao.TipoSalaDao;
 import guasca.modelo.Area;
+import guasca.modelo.TipoSala;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -45,7 +47,11 @@ public class ControleGeral extends HttpServlet {
 
                 request.getRequestDispatcher("cadastroArea.jsp").forward(request, response);
 
-            } else if (formulario.equals("cadastroProfessor")) {
+            }else if(formulario.equals("cadastroTipoSala")){
+                
+                request.getRequestDispatcher("cadastroTipoSala.jsp").forward(request, response);
+                
+            }else if (formulario.equals("cadastroProfessor")) {
                 List<Area> listaAreas = new ArrayList<Area>();
                 AreaDao aDao = new AreaDao();
                 listaAreas = aDao.buscarAreas();
@@ -59,7 +65,12 @@ public class ControleGeral extends HttpServlet {
                 request.setAttribute("listaDiasTurnos", diasTurnos);
                 request.getRequestDispatcher("cadastroProfessor.jsp").forward(request, response);
             } else  if (formulario.equals("cadastroSala")) {
-
+                
+                List<TipoSala> listaTipoSala = new ArrayList<TipoSala>();
+                TipoSalaDao tpDao = new TipoSalaDao();
+                listaTipoSala = tpDao.buscarTiposSalas();
+                
+                request.setAttribute("listaTipoSala", listaTipoSala);
                 request.getRequestDispatcher("cadastroSala.jsp").forward(request, response);
 
             } else  if (formulario.equals("consultaDisponibilidadeSala")) {

@@ -4,6 +4,8 @@
     Author     : fernando
 --%>
 
+<%@page import="guasca.modelo.TipoSala"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,10 +26,32 @@
                 <input type="text" id="nomeSala" name="nomeSala"><br><br>
                 
                 <br>
-                <label for="tipoSala1">
-                   Tipo:
-                </label>
-                <%@include file="includeTipoSala.jsp" %>
+                    <%
+                        List<TipoSala> tpLista = (List<TipoSala>) request.getAttribute("listaTipoSala");
+                    %>
+                    <label for="optionTipoSala">
+                        Tipo de Sala:
+                    </label>
+                    <select id="optionTipoSala" name="optionTipoSala">
+                        <%
+                        if(tpLista.size() == 0){
+                        %>
+                        <option value="-1">Inexiste um Tipo de Sala</option>
+                        <%
+                        }else{
+                        %>
+                        <option value="0">Selecione:</option>
+                        <%
+                            for (int i = 0; i < tpLista.size(); i++) {
+                        %>
+                        <option value="<%= tpLista.get(i).getIdTipoSala()%>">
+                            <%= tpLista.get(i).getDescricao()%>
+                        </option>
+                        <%
+                            }
+                        }
+                        %>
+                    </select>                
                 <br>
                 <br>
                 <br>

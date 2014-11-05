@@ -2,9 +2,7 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 CREATE SCHEMA IF NOT EXISTS `guasca` DEFAULT CHARACTER SET latin1 ;
-USE `mydb` ;
 USE `guasca` ;
 
 -- -----------------------------------------------------
@@ -157,19 +155,28 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
+-- Table `guasca`.`tipo_sala`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `guasca`.`tipo_sala` (
+  `id_tipo_sala` INT NOT NULL AUTO_INCREMENT ,
+  `nome` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`id_tipo_sala`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `guasca`.`sala`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`sala` (
   `id_sala` INT(11) NOT NULL AUTO_INCREMENT ,
   `qtdAlunos` INT(11) NOT NULL ,
   `nome` VARCHAR(45) NOT NULL ,
-  `tipo` VARCHAR(45) NOT NULL ,
-  `id_credito` INT(11) NULL DEFAULT NULL ,
+  `id_tipo_sala` INT NOT NULL ,
   PRIMARY KEY (`id_sala`) ,
-  INDEX `fk_sala_credito1_idx` (`id_credito` ASC) ,
-  CONSTRAINT `fk_sala_credito1`
-    FOREIGN KEY (`id_credito` )
-    REFERENCES `guasca`.`credito` (`id_credito` )
+  INDEX `fk_sala_tipo_sala1_idx` (`id_tipo_sala` ASC) ,
+  CONSTRAINT `fk_sala_tipo_sala1`
+    FOREIGN KEY (`id_tipo_sala` )
+    REFERENCES `guasca`.`tipo_sala` (`id_tipo_sala` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -199,16 +206,6 @@ CREATE  TABLE IF NOT EXISTS `guasca`.`turma` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `guasca`.`tipo_sala`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `guasca`.`tipo_sala` (
-  `id_tipo_sala` INT NOT NULL AUTO_INCREMENT ,
-  `nome` VARCHAR(45) NOT NULL ,
-  PRIMARY KEY (`id_tipo_sala`) )
-ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------

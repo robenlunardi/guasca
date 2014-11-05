@@ -12,9 +12,9 @@ package guasca.modelo;
  */
 public class Sala {
     
-     private int idSala;
+    private int idSala;
     private String nome;
-    private String tipo;
+    private int idTipoSala;
     private int quantAlunos;
    /* 
     public Sala(String nome, String numero, String tipo){
@@ -31,15 +31,28 @@ public class Sala {
         this.quantAlunos = quantAlunos;
     }
 */
-    public Sala() {
-        
+    public Sala() {        
     }
 
-     public Sala(int idSala, String nome , String tipo, int quantAlunos) {
+     public Sala(int idSala, String nome , int quantAlunos) {
         this.idSala = idSala;
         this.nome = nome;
-        this.tipo = tipo;
         this.quantAlunos = quantAlunos;
+    }
+     
+    public Sala(int idSala, String nome , int id_tp_sala, int quantAlunos) {
+        this.idSala = idSala;
+        this.nome = nome;
+        this.idTipoSala = id_tp_sala;
+        this.quantAlunos = quantAlunos;
+    } 
+
+    public int getIdTipoSala() {
+        return idTipoSala;
+    }
+
+    public void setIdTipoSala(int idTipoSala) {
+        this.idTipoSala = idTipoSala;
     }
 
     
@@ -62,17 +75,6 @@ public class Sala {
         this.nome = nome;
     }
 
-    
-    public String getTipo() {
-        return tipo;
-    }
-
-    
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    
     public int getQuantAlunos() {
         return quantAlunos;
     }

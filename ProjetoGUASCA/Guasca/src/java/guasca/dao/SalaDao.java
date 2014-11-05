@@ -29,12 +29,12 @@ public class SalaDao implements SalaInterface{
         try {
 
             conexao = Conexao.abrirConexao();
-            ps = conexao.prepareStatement("insert into sala (qtdAlunos, nome, tipo) values (?,?,?)");
+            ps = conexao.prepareStatement("insert into sala (qtdAlunos, nome, id_tipo_sala) values (?,?,?)");
             
             
             ps.setInt(1, nova.getQuantAlunos());
             ps.setString(2, nova.getNome());
-            ps.setString(3, nova.getTipo());
+            ps.setInt(3, nova.getIdTipoSala());
             ps.execute();
 
         } catch (Exception e) {
@@ -77,7 +77,7 @@ public class SalaDao implements SalaInterface{
             
              while (rs.next()) {
                 sala = new Sala(
-                        rs.getInt("id_sala"), rs.getString("nome"), rs.getString("tipo"), rs.getInt("qtdAlunos"));
+                        rs.getInt("id_sala"), rs.getString("nome"), rs.getInt("id_tipo_sala"), rs.getInt("qtdAlunos"));
                 lista.add(sala);
             }
             

@@ -7,7 +7,9 @@
 package guasca.controle.security;
 
 import guasca.dao.SalaDao;
+import guasca.dao.TipoSalaDao;
 import guasca.modelo.Sala;
+import guasca.modelo.TipoSala;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -43,12 +45,12 @@ public class ControleSala2 extends HttpServlet {
             if (action.equals("cadastrarSala")) {
 
                 String nome = request.getParameter("nomeSala");
-                String tipo = request.getParameter("tipoSala1");
+                int id_tipo_sala = Integer.parseInt(request.getParameter("optionTipoSala"));
                 int quantAlunos = Integer.parseInt(request.getParameter("quantidadeAlunos"));
 
                 Sala sal = new Sala();
                 sal.setNome(nome);
-                sal.setTipo(tipo);
+                sal.setIdTipoSala(id_tipo_sala);
                 sal.setQuantAlunos(quantAlunos);
 
                 SalaDao salaDao = new SalaDao();
@@ -71,6 +73,13 @@ public class ControleSala2 extends HttpServlet {
                 }
 
                 throw new Exception("Página não localizada.");
+            }else if(action.equals("cadastrarTipoSala")){
+                String descricao = request.getParameter("descricaoTipoSala");
+                TipoSala tipoSala = new TipoSala(descricao);
+                TipoSalaDao tipoSalaDao = new TipoSalaDao();
+                tipoSalaDao.inserirTipoSala(tipoSala);
+                
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             }
 
         } catch (Exception e) {
