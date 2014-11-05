@@ -5,7 +5,7 @@
     };
     Arrays.sort(tipoSala);
 %>
-<select name="tipoSala1">
+<select   id="tipoSala1" name="tipoSala1">
     <%
         for (int i = 0; i < tipoSala.length; i++) {
     %>
