@@ -13,7 +13,7 @@
         <title>Consultar Disponibilidade de Salas</title>
     </head>
     <body>
-        <form action="ControleSala">
+        <form action="ControleSala2">
             <input type="hidden" name="action" value="consultaDisponibilidadeSala"/>
             <fieldset>
                 <legend>Consultar Disponibilidade de Salas</legend>
