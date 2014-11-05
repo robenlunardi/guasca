@@ -37,7 +37,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`credito` (
   `id_credito` INT(11) NOT NULL AUTO_INCREMENT ,
-  `id_dia_turno` INT(11) NULL DEFAULT NULL ,
+  `id_dia_turno` INT(11) NULL ,
   `valor` INT NOT NULL ,
   PRIMARY KEY (`id_credito`) ,
   INDEX `fk_credito_dia_turno1_idx` (`id_dia_turno` ASC) ,
@@ -69,8 +69,6 @@ CREATE  TABLE IF NOT EXISTS `guasca`.`disciplina` (
   `qtdAlunos` INT(3) NOT NULL ,
   `nome` VARCHAR(45) NOT NULL ,
   `turno` INT NOT NULL ,
-  `tipo_sala1` VARCHAR(45) NULL ,
-  `tipo_sala2` VARCHAR(45) NULL DEFAULT NULL ,
   `id_area` INT(11) NULL DEFAULT NULL ,
   PRIMARY KEY (`id_disciplina`) ,
   INDEX `fk_disciplina_area1_idx` (`id_area` ASC) ,
@@ -204,23 +202,40 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
+-- Table `guasca`.`tipo_sala`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `guasca`.`tipo_sala` (
+  `id_tipo_sala` INT NOT NULL AUTO_INCREMENT ,
+  `nome` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`id_tipo_sala`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `guasca`.`disciplina_has_credito`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`disciplina_has_credito` (
   `id_disciplina_has_credito` INT NOT NULL AUTO_INCREMENT ,
-  `credito_id_credito` INT(11) NOT NULL ,
-  `disciplina_id_disciplina` INT(11) NOT NULL ,
+  `id_credito` INT(11) NOT NULL ,
+  `id_disciplina` INT(11) NOT NULL ,
+  `id_tipo_sala` INT NOT NULL ,
   PRIMARY KEY (`id_disciplina_has_credito`) ,
-  INDEX `fk_disciplina_has_credito_credito1_idx` (`credito_id_credito` ASC) ,
-  INDEX `fk_disciplina_has_credito_disciplina1_idx` (`disciplina_id_disciplina` ASC) ,
-  CONSTRAINT `fk_disciplina_has_credito_credito1`
-    FOREIGN KEY (`credito_id_credito` )
+  INDEX `fk_disciplina_has_credito_credito1_idx` (`id_credito` ASC) ,
+  INDEX `fk_disciplina_has_credito_disciplina1_idx` (`id_disciplina` ASC) ,
+  INDEX `fk_disciplina_has_credito_tipo_sala1_idx` (`id_tipo_sala` ASC) ,
+  CONSTRAINT `fk_disciplina_has_credito_credito`
+    FOREIGN KEY (`id_credito` )
     REFERENCES `guasca`.`credito` (`id_credito` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_disciplina_has_credito_disciplina1`
-    FOREIGN KEY (`disciplina_id_disciplina` )
+  CONSTRAINT `fk_disciplina_has_credito_disciplina`
+    FOREIGN KEY (`id_disciplina` )
     REFERENCES `guasca`.`disciplina` (`id_disciplina` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_disciplina_has_credito_tipo_sala1`
+    FOREIGN KEY (`id_tipo_sala` )
+    REFERENCES `guasca`.`tipo_sala` (`id_tipo_sala` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
