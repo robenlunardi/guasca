@@ -52,7 +52,7 @@ public class ControleDisciplina extends HttpServlet {
                 String creditos1 = request.getParameter("creditos1");
                 String tipoSala2 = request.getParameter("tipoSala2");
                 String creditos2 = request.getParameter("creditos2");
-                String turno = request.getParameter("turno");
+                int turno = (Integer.parseInt(request.getParameter("turno")));
                 String quantAlunos = request.getParameter("quantAlunos");
                 
                 Disciplina disciplina = new Disciplina();
