@@ -52,18 +52,7 @@ public class ControleGeral extends HttpServlet {
                 request.getRequestDispatcher("cadastroTipoSala.jsp").forward(request, response);
                 
             }else if (formulario.equals("cadastroProfessor")) {
-                List<Area> listaAreas = new ArrayList<Area>();
-                AreaDao aDao = new AreaDao();
-                listaAreas = aDao.buscarAreas();
-                
-                String[][] diasTurnos = new String[3][6];
-                
-                DiasSemana dias = new DiasSemana();
-                diasTurnos = dias.concatenarDiaTurno();
-                
-                request.setAttribute("listaAreas", listaAreas);
-                request.setAttribute("listaDiasTurnos", diasTurnos);
-                request.getRequestDispatcher("cadastroProfessor.jsp").forward(request, response);
+                request.getRequestDispatcher("ControleProfessor?action=carregarListas").forward(request, response);
             } else  if (formulario.equals("cadastroSala")) {
                 
                 List<TipoSala> listaTipoSala = new ArrayList<TipoSala>();
@@ -79,9 +68,10 @@ public class ControleGeral extends HttpServlet {
 
             } else  if (formulario.equals("listarSala")) {
                 request.getRequestDispatcher("ControleSala2?action=listarSala").forward(request, response);
-                request.getRequestDispatcher("listarSala.jsp").forward(request, response);
             } else  if (formulario.equals("cadastroDisciplina")) {
                 request.getRequestDispatcher("ControleDisciplina?action=carregarListas").forward(request, response);
+            } else if(formulario.equals("listarProfessorInds")){
+                request.getRequestDispatcher("ControleProfessor?action=listarProfessorInds").forward(request, response);
             } else {
                 throw new Exception("Página não localizada.");
             }

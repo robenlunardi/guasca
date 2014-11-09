@@ -4,6 +4,7 @@
     Author     : Paula
 --%>
 
+<%@page import="guasca.modelo.TipoSala"%>
 <%@page import="guasca.modelo.Professor"%>
 <%@page import="guasca.modelo.Area"%>
 <%@page import="java.util.List"%>
@@ -30,68 +31,99 @@
                 </label>
                 <select name="professor1">
                     <option value="-1">Selecione:</option>
-                        <%
-                            List<Professor> pLista = (List<Professor>) request.getAttribute("listaProfessores");
-                            for (int i = 0; i < pLista.size(); i++) {
+                    <%
+                        List<Professor> pLista = (List<Professor>) request.getAttribute("listaProfessores");
+                        for (int i = 0; i < pLista.size(); i++) {
 
-                        %>
-                        <option value="<%= pLista.get(i).getIdProfessor()%>">
-                            <%= pLista.get(i).getNome()%>
-                        </option>
+                    %>
+                    <option value="<%= pLista.get(i).getIdProfessor()%>">
+                        <%= pLista.get(i).getNome()%>
+                    </option>
                 </select>
                 <label for="professor2">
                     Professor:
                 </label>
                 <select name="professor2">
                     <option value="-1">Selecione:</option>
-                        <option value="<%= pLista.get(i).getIdProfessor()%>">
-                            <%= pLista.get(i).getNome()%>
-                        </option>
-                        <%
-                            }
-                        %>
+                    <option value="<%= pLista.get(i).getIdProfessor()%>">
+                        <%= pLista.get(i).getNome()%>
+                    </option>
+                    <%
+                        }
+                    %>
                 </select>
                 <label for="areaDisciplina">
                     Área:
                 </label>
                 <select name="areaDisciplina">
                     <option value="-1">Selecione:</option>
-                        <%
-                            List<Area> aLista = (List<Area>) request.getAttribute("listaAreas");
-                            for (int i = 0; i < aLista.size(); i++) {
-
-                        %>
-                        <option value="<%= aLista.get(i).getIdArea()%>">
-                            <%= aLista.get(i).getDescricao()%>
-                        </option>
-                        <%
-                            }
-                        %>
-                </select>
-                <br><br>
-                <label for="tipoSala1">
-                    Tipo de Sala 1:
-                </label>
-                <%@include file="includeTipoSala.jsp" %>
-                <label for="creditos1">
-                    Créditos:
-                </label>
-                <input type="text" id="creditos1" name="creditos1">
-                <br><br>
-                <label for="tipoSala2">
-                    Tipo de Sala 2:
-                </label>
-                <select name="tipoSala2">
                     <%
-                        for (int i = 0; i < tipoSala.length; i++) {
+                        List<Area> aLista = (List<Area>) request.getAttribute("listaAreas");
+                        for (int i = 0; i < aLista.size(); i++) {
+
                     %>
-                    <option value="<%= tipoSala[i]%>">
-                        <%= tipoSala[i]%>
+                    <option value="<%= aLista.get(i).getIdArea()%>">
+                        <%= aLista.get(i).getDescricao()%>
                     </option>
                     <%
                         }
                     %>
                 </select>
+                <br><br>
+
+                <%
+                    List<TipoSala> tpLista = (List<TipoSala>) request.getAttribute("listaTipoSala");
+                %>
+                <label for="optionTipoSala">
+                    Tipo de Sala 1:
+                </label>
+                <select id="optionTipoSala" name="optionTipoSala">
+                    <%
+                        if (tpLista.size() == 0) {
+                    %>
+                    <option value="-1">Inexiste um Tipo de Sala</option>
+                    <%                        } else {
+                    %>
+                    <option value="0">Selecione:</option>
+                    <%
+                        for (int i = 0; i < tpLista.size(); i++) {
+                    %>
+                    <option value="<%= tpLista.get(i).getIdTipoSala()%>">
+                        <%= tpLista.get(i).getDescricao()%>
+                    </option>
+                    <%
+                            }
+                        }
+                    %>
+                </select>  
+
+                <label for="creditos1">
+                    Créditos:
+                </label>
+                <input type="text" id="creditos1" name="creditos1">
+                <br><br>
+                <label for="optionTipoSala2">
+                    Tipo de Sala 2:
+                </label>
+                <select id="optionTipoSala2" name="optionTipoSala2">
+                    <%
+                        if (tpLista.size() == 0) {
+                    %>
+                    <option value="-1">Inexiste um Tipo de Sala</option>
+                    <%                        } else {
+                    %>
+                    <option value="0">Selecione:</option>
+                    <%
+                        for (int i = 0; i < tpLista.size(); i++) {
+                    %>
+                    <option value="<%= tpLista.get(i).getIdTipoSala()%>">
+                        <%= tpLista.get(i).getDescricao()%>
+                    </option>
+                    <%
+                            }
+                        }
+                    %>
+                </select>  
                 <label for="creditos2">
                     Créditos:
                 </label>

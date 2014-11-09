@@ -49,7 +49,7 @@ Infra:
 Problemas atuais:
 -- Idiomas não consegue trabalhar uma manhã inteira (dani, português, superior)
 
-Primeiras Restrições (constraints):
+Primeiras Restrições:
 - horários que os professores não podem
 - disciplinas inteiras ou quebradas
 - posição das disciplinas nos turnos

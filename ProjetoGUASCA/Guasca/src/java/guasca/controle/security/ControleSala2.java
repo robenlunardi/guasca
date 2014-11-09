@@ -49,8 +49,9 @@ public class ControleSala2 extends HttpServlet {
                 int quantAlunos = Integer.parseInt(request.getParameter("quantidadeAlunos"));
 
                 Sala sal = new Sala();
+                TipoSala tpSala = new TipoSala(id_tipo_sala);
                 sal.setNome(nome);
-                sal.setIdTipoSala(id_tipo_sala);
+                sal.setTpSala(tpSala);
                 sal.setQuantAlunos(quantAlunos);
 
                 SalaDao salaDao = new SalaDao();

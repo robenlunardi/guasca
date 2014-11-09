@@ -24,6 +24,10 @@ public class TipoSala {
         this.descricao = descricao;
     }
 
+    public TipoSala(int idTipoSala) {
+        this.idTipoSala = idTipoSala;
+    }
+
     public String getDescricao() {
         return descricao;
     }

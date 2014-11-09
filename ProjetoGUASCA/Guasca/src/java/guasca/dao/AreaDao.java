@@ -65,7 +65,7 @@ public class AreaDao implements AreaInterface {
         try {
             
             conexao = Conexao.abrirConexao();
-            ps = conexao.prepareStatement("select * from area");
+            ps = conexao.prepareStatement("select * from area use index (idx_area_nome)");
             rs = ps.executeQuery();
             
             Area area;
@@ -88,5 +88,46 @@ public class AreaDao implements AreaInterface {
 
         return lista;
 
+    }
+
+    @Override
+    public List<Area> buscarAreasProfessor(int idProf) throws Exception {
+        List<Area> lista = new ArrayList<Area>();
+
+        Connection conexao   = null;
+        PreparedStatement ps = null;
+        ResultSet rs         = null;
+
+        try {
+            StringBuilder sql = new StringBuilder();
+            sql.append("select a.* from area a")
+                .append(" join professor_has_area pha on pha.id_area = a.id_area")
+                .append(" join professor p on p.id_professor = pha.id_area")
+                .append(" where p.id_professor = ?");
+               
+            conexao = Conexao.abrirConexao();
+            ps = conexao.prepareStatement(sql.toString());
+            ps.setInt(1, idProf);
+            rs = ps.executeQuery();
+            
+            Area area;
+            
+            while(rs.next()){
+                area = new Area(
+                          rs.getInt("id_area")
+                        , rs.getString("nome"));
+                lista.add(area);
+            }
+            
+            
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            throw new Exception(e.getMessage());
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+
+        return lista;
     }
 }

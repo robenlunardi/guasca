@@ -14,7 +14,7 @@ public class Sala {
     
     private int idSala;
     private String nome;
-    private int idTipoSala;
+    private TipoSala tpSala;
     private int quantAlunos;
    /* 
     public Sala(String nome, String numero, String tipo){
@@ -39,22 +39,21 @@ public class Sala {
         this.nome = nome;
         this.quantAlunos = quantAlunos;
     }
-     
-    public Sala(int idSala, String nome , int id_tp_sala, int quantAlunos) {
+
+    public Sala(int idSala, String nome, TipoSala tpSala, int quantAlunos) {
         this.idSala = idSala;
         this.nome = nome;
-        this.idTipoSala = id_tp_sala;
+        this.tpSala = tpSala;
         this.quantAlunos = quantAlunos;
-    } 
-
-    public int getIdTipoSala() {
-        return idTipoSala;
     }
 
-    public void setIdTipoSala(int idTipoSala) {
-        this.idTipoSala = idTipoSala;
+    public TipoSala getTpSala() {
+        return tpSala;
     }
 
+    public void setTpSala(TipoSala tpSala) {
+        this.tpSala = tpSala;
+    }
     
     public int getIdSala() {
         return idSala;

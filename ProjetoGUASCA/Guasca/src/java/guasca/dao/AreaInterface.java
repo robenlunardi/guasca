@@ -16,4 +16,5 @@ public interface AreaInterface {
     public abstract void atualizarArea(int idArea) throws Exception;
     public abstract void deletarArea(int idArea) throws Exception;
     public abstract List<Area> buscarAreas() throws Exception;
+    public abstract List<Area> buscarAreasProfessor(int idProf) throws Exception;
 }

@@ -4,6 +4,8 @@
  */
 package guasca.modelo;
 
+import java.util.List;
+
 /**
  *
  * @author Douglas
@@ -14,30 +16,60 @@ public class Professor {
     private String matricula;
     private String nome;
     private String email;
-    private int idIndisponibilidade;
+    private List<Area> listaArea;
+    private List<Indisponibilidade> listaInds;
 
-    public int getIdProfessor() {
-        return idProfessor;
+    public Professor(int idProfessor, List<Indisponibilidade> listaInds) {
+        this.idProfessor = idProfessor;
+        this.listaInds = listaInds;
     }
 
+    public Professor(int idProfessor, String nome) {
+        this.nome = nome;
+        this.idProfessor = idProfessor;
+    }
+    
     public Professor(String matricula, String nome, String email) {
         this.matricula = matricula;
         this.nome = nome;
         this.email = email;
     }
     
-    public Professor(int idProfessor, String nome) {
-        this.nome = nome;
-        this.idProfessor = idProfessor;
-    }
-
-    public Professor(int idProfessor, String matricula, String nome, String email, int idIndisponibilidade) {
+    public Professor(String matricula, String nome, String email, List<Area> listaArea) {
         this.idProfessor = idProfessor;
         this.matricula = matricula;
         this.nome = nome;
         this.email = email;
-        this.idIndisponibilidade = idIndisponibilidade;
+        this.listaArea = listaArea;
     }    
+
+    public Professor(int idProfessor, String matricula, String nome, String email) {
+        this.idProfessor = idProfessor;
+        this.matricula = matricula;
+        this.nome = nome;
+        this.email = email;
+    }
+    
+    public Professor(int idProfessor, String matricula, String nome, String email, List<Area> listaArea) {
+        this.idProfessor = idProfessor;
+        this.matricula = matricula;
+        this.nome = nome;
+        this.email = email;
+        this.listaArea = listaArea;
+    }
+
+    public Professor(int idProfessor, String matricula, String nome, String email, List<Area> listaArea, List<Indisponibilidade> listaInds) {
+        this.idProfessor = idProfessor;
+        this.matricula = matricula;
+        this.nome = nome;
+        this.email = email;
+        this.listaArea = listaArea;
+        this.listaInds = listaInds;
+    }
+        
+    public int getIdProfessor() {
+        return idProfessor;
+    }
 
     public void setIdProfessor(int idProfessor) {
         this.idProfessor = idProfessor;
@@ -66,13 +98,21 @@ public class Professor {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public int getIdIndisponibilidade() {
-        return idIndisponibilidade;
+    
+    public List<Area> getListaArea() {
+        return listaArea;
     }
 
-    public void setIdIndisponibilidade(int idIndisponibilidade) {
-        this.idIndisponibilidade = idIndisponibilidade;
-    }    
+    public void setListaArea(List<Area> listaArea) {
+        this.listaArea = listaArea;
+    }
+
+    public List<Indisponibilidade> getListaInds() {
+        return listaInds;
+    }
+
+    public void setListaInds(List<Indisponibilidade> listaInds) {
+        this.listaInds = listaInds;
+    }
     
 }

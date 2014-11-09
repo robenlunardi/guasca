@@ -16,4 +16,6 @@ public interface ProfessorInterface {
     public abstract void atualizarProfessor(int idProfessor) throws Exception;
     public abstract void deletarProfessor(int idProfessor) throws Exception;
     public abstract List<Professor> buscarProfessores() throws Exception;
+    public abstract Professor buscarProfessoresId(int id) throws Exception;
+    public abstract List<Professor> buscarProfessoresSemProfHasInd() throws Exception;
 }

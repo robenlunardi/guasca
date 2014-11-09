@@ -11,7 +11,8 @@ USE `guasca` ;
 CREATE  TABLE IF NOT EXISTS `guasca`.`area` (
   `id_area` INT(11) NOT NULL AUTO_INCREMENT ,
   `nome` VARCHAR(45) NOT NULL ,
-  PRIMARY KEY (`id_area`) )
+  PRIMARY KEY (`id_area`) ,
+  INDEX `idx_area_nome` (`nome` ASC) )
 ENGINE = InnoDB
 AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = latin1;
@@ -80,36 +81,6 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `guasca`.`indisponibilidade`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `guasca`.`indisponibilidade` (
-  `id_ind` INT(11) NOT NULL AUTO_INCREMENT ,
-  `id_prof` INT(11) NULL DEFAULT NULL ,
-  `segM` INT(11) NULL DEFAULT NULL ,
-  `segT` INT(11) NULL DEFAULT NULL ,
-  `segN` INT(11) NULL DEFAULT NULL ,
-  `terM` INT(11) NULL DEFAULT NULL ,
-  `terT` INT(11) NULL DEFAULT NULL ,
-  `terN` INT(11) NULL DEFAULT NULL ,
-  `quaM` INT(11) NULL DEFAULT NULL ,
-  `quaT` INT(11) NULL DEFAULT NULL ,
-  `quaN` INT(11) NULL DEFAULT NULL ,
-  `quiM` INT(11) NULL DEFAULT NULL ,
-  `quiT` INT(11) NULL DEFAULT NULL ,
-  `quiN` INT(11) NULL DEFAULT NULL ,
-  `sexM` INT(11) NULL DEFAULT NULL ,
-  `sexT` INT(11) NULL DEFAULT NULL ,
-  `sexN` INT(11) NULL DEFAULT NULL ,
-  `sabM` INT(11) NULL DEFAULT NULL ,
-  `sabT` INT(11) NULL DEFAULT NULL ,
-  `sabN` INT(11) NULL DEFAULT NULL ,
-  PRIMARY KEY (`id_ind`) )
-ENGINE = InnoDB
-AUTO_INCREMENT = 2
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
 -- Table `guasca`.`professor`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`professor` (
@@ -117,14 +88,7 @@ CREATE  TABLE IF NOT EXISTS `guasca`.`professor` (
   `matricula` VARCHAR(7) NOT NULL ,
   `nome` VARCHAR(45) NOT NULL ,
   `email` VARCHAR(45) NOT NULL ,
-  `id_ind` INT(11) NULL DEFAULT NULL ,
-  PRIMARY KEY (`id_professor`) ,
-  INDEX `fk_professor_indisponibilidade1_idx` (`id_ind` ASC) ,
-  CONSTRAINT `fk_professor_indisponibilidade1`
-    FOREIGN KEY (`id_ind` )
-    REFERENCES `guasca`.`indisponibilidade` (`id_ind` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id_professor`) )
 ENGINE = InnoDB
 AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = latin1;
@@ -151,6 +115,20 @@ CREATE  TABLE IF NOT EXISTS `guasca`.`disciplina_has_professor` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `guasca`.`indisponibilidade`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `guasca`.`indisponibilidade` (
+  `id_ind` INT(11) NOT NULL AUTO_INCREMENT ,
+  `dia` INT(11) NULL ,
+  `turno` INT(11) NULL DEFAULT NULL ,
+  `valor` INT(11) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id_ind`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -233,6 +211,55 @@ CREATE  TABLE IF NOT EXISTS `guasca`.`disciplina_has_credito` (
   CONSTRAINT `fk_disciplina_has_credito_tipo_sala1`
     FOREIGN KEY (`id_tipo_sala` )
     REFERENCES `guasca`.`tipo_sala` (`id_tipo_sala` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `guasca`.`professor_has_ind`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `guasca`.`professor_has_ind` (
+  `id_prof_has_ind` INT NOT NULL AUTO_INCREMENT ,
+  `id_ind` INT(11) NOT NULL ,
+  `id_professor` INT(11) NOT NULL ,
+  `ano` YEAR NULL ,
+  `periodo` INT(11) NULL ,
+  `datetime` DATETIME NULL ,
+  PRIMARY KEY (`id_prof_has_ind`) ,
+  INDEX `fk_professor_has_ind_indisponibilidade1_idx` (`id_ind` ASC) ,
+  INDEX `fk_professor_has_ind_professor1_idx` (`id_professor` ASC) ,
+  CONSTRAINT `fk_professor_has_ind_indisponibilidade1`
+    FOREIGN KEY (`id_ind` )
+    REFERENCES `guasca`.`indisponibilidade` (`id_ind` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_professor_has_ind_professor1`
+    FOREIGN KEY (`id_professor` )
+    REFERENCES `guasca`.`professor` (`id_professor` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `guasca`.`professor_has_area`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `guasca`.`professor_has_area` (
+  `id_prof_has_area` INT NOT NULL AUTO_INCREMENT ,
+  `id_area` INT(11) NOT NULL ,
+  `id_professor` INT(11) NOT NULL ,
+  PRIMARY KEY (`id_prof_has_area`) ,
+  INDEX `fk_professor_has_area_area1_idx` (`id_area` ASC) ,
+  INDEX `fk_professor_has_area_professor1_idx` (`id_professor` ASC) ,
+  CONSTRAINT `fk_professor_has_area_area`
+    FOREIGN KEY (`id_area` )
+    REFERENCES `guasca`.`area` (`id_area` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_professor_has_area_professor`
+    FOREIGN KEY (`id_professor` )
+    REFERENCES `guasca`.`professor` (`id_professor` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

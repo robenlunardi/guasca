@@ -13,11 +13,7 @@
         <%@include file="includes.jsp" %>
     </head>
     <body>        
-        <a class="botaoMenu" href="ControleGeral?formulario=cadastroArea" >Cadastrar Área</a>
-        <a class="botaoMenu" href="ControleGeral?formulario=cadastroProfessor" >Cadastrar Professor</a>
-        <a class="botaoMenu" href="ControleGeral?formulario=cadastroTipoSala" >Cadastrar Tipo de Sala</a>
-        <a class="botaoMenu" href="ControleGeral?formulario=consultaDisponibilidadeSala" >Cadastrar Sala</a>
-        <a class="botaoMenu" href="ControleGeral?formulario=cadastroDisciplina" >Cadastrar Disciplina</a>
+        <%@include file="menuAdmin.jsp" %>
         <%
             String msg = (String) request.getAttribute("mensagem");
             if (msg != null) {

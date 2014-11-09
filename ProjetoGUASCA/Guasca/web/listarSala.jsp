@@ -37,7 +37,7 @@
                         %>
                         <tr>
                             <td headers="nomeSala"><% out.print(sal.getNome());%></td>
-                            <td headers="tipoSala"><% out.print(sal.getTipo());%></td>
+                            <td headers="tipoSala"><% out.print(sal.getTpSala().getDescricao());%></td>
                             <td headers="quantidadeAlunos"><% out.print(sal.getQuantAlunos());%></td>
                             <td headers="Acoes" class="colunaAcoes"></td>
                         </tr>

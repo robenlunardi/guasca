@@ -8,7 +8,8 @@ package guasca.modelo;
  *
  * @author Douglas
  */
-public class Area {
+public class Area{
+
     private String descricao;
     private int idArea;
 
@@ -18,6 +19,10 @@ public class Area {
     public Area(int idArea, String descricao) {
         this.idArea = idArea;
         this.descricao = descricao;
+    }
+
+    public Area(int idArea) {
+        this.idArea = idArea;
     }
 
     public Area(String descricao) {

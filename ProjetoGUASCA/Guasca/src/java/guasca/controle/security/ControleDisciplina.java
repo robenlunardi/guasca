@@ -7,9 +7,11 @@ package guasca.controle.security;
 import guasca.dao.AreaDao;
 import guasca.dao.DisciplinaDao;
 import guasca.dao.ProfessorDao;
+import guasca.dao.TipoSalaDao;
 import guasca.modelo.Area;
 import guasca.modelo.Disciplina;
 import guasca.modelo.Professor;
+import guasca.modelo.TipoSala;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,8 +84,13 @@ public class ControleDisciplina extends HttpServlet {
                     ProfessorDao pDao = new ProfessorDao();
                     listaProfessores = pDao.buscarProfessores();
                     
+                    List<TipoSala> listaTipoSala = new ArrayList<TipoSala>();
+                    TipoSalaDao tpDao = new TipoSalaDao();
+                    listaTipoSala = tpDao.buscarTiposSalas();
+                                    
                     request.setAttribute("listaProfessores", listaProfessores);
                     request.setAttribute("listaAreas", listaAreas);
+                    request.setAttribute("listaTipoSala", listaTipoSala);
                     //request.setAttribute("listasala", lista);
                     request.getRequestDispatcher("cadastroDisciplina.jsp").forward(request, response);
                 } catch (Exception e) {

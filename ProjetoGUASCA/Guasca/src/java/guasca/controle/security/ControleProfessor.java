@@ -5,7 +5,13 @@
 package guasca.controle.security;
 
 import guasca.controle.ferramentas.DiasSemana;
+import guasca.dao.AreaDao;
+import guasca.dao.ProfessorDao;
+import guasca.modelo.Area;
+import guasca.modelo.Professor;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,10 +41,19 @@ public class ControleProfessor extends HttpServlet {
             String action = request.getParameter("action");
             
             if(action.equals("cadastrarProfessor")){
-                String nome = request.getParameter("nomeProf");
                 String matricula = request.getParameter("matriculaProf");
+                String nome = request.getParameter("nomeProf");
+                String email = request.getParameter("emailProf");
+                String[] idArea = request.getParameterValues("area");
+                List<Area> listaIdArea = new ArrayList<Area>();
+                Area area = null;
+                for (int i = 0; i < idArea.length; i++) {
+                    area = new Area(Integer.parseInt(idArea[i]));
+                    listaIdArea.add(area);
+                }
+                
+                /*
                 String[][] diasTurnos = new String[3][6];
-                int idArea = Integer.parseInt(request.getParameter("area"));
                 int[][] inds = new int[3][6];
                 
                 DiasSemana dias = new DiasSemana();
@@ -49,11 +64,33 @@ public class ControleProfessor extends HttpServlet {
                         inds[i][j] = Integer.parseInt(request.getParameter(diasTurnos[i][j]));
                     }
                 }
-                
-                
-                
+                */
+                Professor prof = new Professor(matricula, nome, email, listaIdArea);                
+                ProfessorDao pDao = new ProfessorDao();
+                pDao.cadastrarProfessor(prof);
+                request.setAttribute("mensagem", "Professor cadastrado com sucesso.");
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 
+            }else if(action.equals("carregarListas")){
+                                List<Area> listaAreas = new ArrayList<Area>();
+                AreaDao aDao = new AreaDao();
+                listaAreas = aDao.buscarAreas();
+                
+                String[][] diasTurnos = new String[3][6];
+                
+                DiasSemana dias = new DiasSemana();
+                diasTurnos = dias.concatenarDiaTurno();
+                
+                request.setAttribute("listaAreas", listaAreas);
+                request.setAttribute("listaDiasTurnos", diasTurnos);
+                request.getRequestDispatcher("cadastroProfessor.jsp").forward(request, response);
+                
+            }else if(action.equals("listarProfessorInds")){
+                ProfessorDao pDao = new ProfessorDao();
+                List<Professor> lista = pDao.buscarProfessoresSemProfHasInd();
+                request.setAttribute("listaProf", lista);
+                request.getRequestDispatcher("listarProfessorInd.jsp").forward(request, response);
+
             }else{
                 throw new Exception("Página não localizada.");
             }
