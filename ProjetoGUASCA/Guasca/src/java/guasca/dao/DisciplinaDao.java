@@ -32,16 +32,14 @@ public class DisciplinaDao implements DisciplinaInterface{
         try {
 
             conexao = Conexao.abrirConexao();
-            ps = conexao.prepareStatement("insert into disciplina (nome, qtdAlunos, turno, tipo_sala1, tipo_sala2) values (?,?,?,?,?)");
-            //ps = conexao.prepareStatement("insert into disciplina (nome, qtdAlunos, turno, tipo_sala1, tipo_sala2) values (?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+            ps = conexao.prepareStatement("insert into disciplina (nome, qtdAlunos, turno, id_area) values (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 
             ps.setString(1, nova.getNome());
             ps.setInt(2, nova.getQtd_alunos());
             ps.setInt(3, nova.getTurno());
-            ps.setInt(4, nova.getTipo_sala1());
-            ps.setInt(5, nova.getTipo_sala2());
-            ps.execute();
-            /*
+            ps.setInt(4, nova.getId_area());
+            ps.executeUpdate();
+            
             ps.executeUpdate();
             
             rs = ps.getGeneratedKeys();
@@ -50,8 +48,8 @@ public class DisciplinaDao implements DisciplinaInterface{
                 id_disciplina = rs.getInt(1);
             }
             
-            cadastrarCreditos(nova);
-            * */
+            
+            
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             throw new Exception(e.getMessage());

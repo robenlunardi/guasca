@@ -34,7 +34,7 @@
                         </label>
                         <input type="text" id="nomeDisciplina" name="nomeDisciplina"><br><br>
                         <label for="areaDisciplina">
-                            Área do Professor:
+                            Área:
                         </label>
                         <select name="areaDisciplina" id="areaDisciplina" onchange="return filtrarVeiculos(this);">
                             <option value="-1">Selecione:</option>
@@ -56,10 +56,10 @@
                         <%
                             List<TipoSala> tpLista = (List<TipoSala>) request.getAttribute("listaTipoSala");
                         %>
-                        <label for="optionTipoSala">
+                        <label for="optionTipoSala1">
                             Tipo de Sala 1:
                         </label>
-                        <select id="optionTipoSala" name="optionTipoSala">
+                        <select id="optionTipoSala" name="optionTipoSala1">
                             <%
                                 if (tpLista.size() == 0) {
                             %>

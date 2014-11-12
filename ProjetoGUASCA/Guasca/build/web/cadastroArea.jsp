@@ -11,21 +11,27 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/estilos-gerais.css" />
         <title>Cadastro de Área</title>
+        <%@include file="includes.jsp" %>
     </head>
     <body>
-        <form action="ControleArea">
-            <input type="hidden" name="action" value="cadastrarArea"/>
-            <fieldset>
-                <legend>Cadastro de Área</legend>
-                <br>
-                <label for="descricaoArea">
-                    Descrição:
-                </label>
-                <input type="text" id="descricaoArea" name="descricaoArea"><br><br>
+        <div id="menu" class="menuLateral">
+            <%@include file="menuAdmin.jsp" %>
+        </div>
+        <div id="conteudo" class="conteudoCentro">
+            <form action="ControleArea">
+                <input type="hidden" name="action" value="cadastrarArea"/>
+                <fieldset>
+                    <legend>Cadastro de Área</legend>
+                    <br>
+                    <label for="descricaoArea">
+                        Descrição:
+                    </label>
+                    <input type="text" id="descricaoArea" name="descricaoArea"><br><br>
 
-                <input class="botaoForm" type="submit" value="Cadastrar">
+                    <input class="botaoForm" type="submit" value="Cadastrar">
 
-            </fieldset>
-        </form>
+                </fieldset>
+            </form>
+        </div>
     </body>
 </html>

@@ -78,39 +78,41 @@ public class ControleDisciplina extends HttpServlet {
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                 } else {
                     areaDisciplina = Integer.parseInt(seguranca);
-                    if (areaDisciplina <= 0) {
+                    if (areaDisciplina < 1) {
                         request.setAttribute("mensagem", "Disciplina não cadastrada: nenhuma área foi seleiconada.");
                         request.getRequestDispatcher("index.jsp").forward(request, response);
                     } else {
                         seguranca = null;
                         seguranca = request.getParameter("professor1");
-                        if (!seguranca.equals("") || seguranca != null) {
+                        if (seguranca == null) {
+                            //nada a declarar
+                        } else if (!(Integer.parseInt(seguranca) < 1) || !seguranca.equals("")) {
                             professor1 = Integer.parseInt(request.getParameter("professor1"));
                             bProf1 = true;
-                        }else{
+                        } else {
                             //nada de erro
                         }
                         seguranca = null;
                         seguranca = request.getParameter("professor2");
-                        if (!seguranca.equals("") || seguranca != null) {
+                        if (seguranca == null) {
+                            //nada a declarar
+                        } else if (!(Integer.parseInt(seguranca) < 1) || !seguranca.equals("")) {
                             professor2 = Integer.parseInt(request.getParameter("professor2"));
                             bProf2 = true;
-                        }else{
+                        } else {
                             //nada de erro
                         }
-
                     }
                 }
-
                 seguranca = null;
                 seguranca = request.getParameter("optionTipoSala1");
-                tipoSala1 = 0;
+                
                 if (seguranca.equals("") || seguranca == null) {
                     request.setAttribute("mensagem", "Disciplina não cadastrada: nenhum tipo de sala foi selecionado.");
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                 } else {
                     tipoSala1 = Integer.parseInt(request.getParameter("optionTipoSala1"));
-                    if (tipoSala1 <= 0) {
+                    if (tipoSala1 < 1) {
                         request.setAttribute("mensagem", "Disciplina não cadastrada: nenhum tipo de sala foi selecionado.");
                         request.getRequestDispatcher("index.jsp").forward(request, response);
                     }
@@ -118,13 +120,13 @@ public class ControleDisciplina extends HttpServlet {
 
                 seguranca = null;
                 seguranca = request.getParameter("creditos1");
-                credito1 = 0;
+
                 if (seguranca.equals("") || seguranca == null) {
                     request.setAttribute("mensagem", "Disciplina não cadastrada: crédito indefinido.");
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                 } else {
                     credito1 = Integer.parseInt(request.getParameter("optionTipoSala1"));
-                    if (credito1 <= 0) {
+                    if (credito1 < 1) {
                         request.setAttribute("mensagem", "Disciplina não cadastrada: crédito indefinido.");
                         request.getRequestDispatcher("index.jsp").forward(request, response);
                     } else {
@@ -134,23 +136,22 @@ public class ControleDisciplina extends HttpServlet {
 
                 seguranca = null;
                 seguranca = request.getParameter("optionTipoSala2");
-                tipoSala2 = 0;
-                credito2 = 0;
+
                 if (seguranca.equals("") || seguranca == null) {
                     //nada
                 } else {
-                    tipoSala1 = Integer.parseInt(request.getParameter("optionTipoSala2"));
-                    if (tipoSala1 <= 0) {
+                    tipoSala2 = Integer.parseInt(request.getParameter("optionTipoSala2"));
+                    if (tipoSala1 < 1) {
                         //nada
                     } else {
                         seguranca = null;
                         seguranca = request.getParameter("creditos2");
-                        credito2 = 0;
+
                         if (seguranca.equals("") || seguranca == null) {
                             //nada
                         } else {
                             credito2 = Integer.parseInt(request.getParameter("optionTipoSala2"));
-                            if (credito2 <= 0) {
+                            if (credito2 < 1) {
                             } else {
                                 credito2 = Integer.parseInt(request.getParameter("creditos2"));
                                 bTipoSala2 = true;
@@ -162,13 +163,13 @@ public class ControleDisciplina extends HttpServlet {
 
                 seguranca = null;
                 seguranca = request.getParameter("quantAlunos");
-                qtdAlunos = 0;
+
                 if (seguranca.equals("") || seguranca == null) {
                     request.setAttribute("mensagem", "Disciplina não cadastrada: quantidade de alunos indefinida.");
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                 } else {
                     qtdAlunos = Integer.parseInt(request.getParameter("quantAlunos"));
-                    if (qtdAlunos <= 0) {
+                    if (qtdAlunos < 1) {
                         request.setAttribute("mensagem", "Disciplina não cadastrada: quantidade de alunos indefinida.");
                         request.getRequestDispatcher("index.jsp").forward(request, response);
                     }
@@ -191,8 +192,8 @@ public class ControleDisciplina extends HttpServlet {
                 if (bProf2) {
                     nova.setId_professor2(professor2);
                 }
-                
                 DisciplinaDao dDao = new DisciplinaDao();
+                System.out.println("teste");
                 if (dDao.cadastrarDisciplina(nova)) {
                     request.setAttribute("mensagem", "Disciplina cadastrada com sucesso.");
                     request.getRequestDispatcher("index.jsp").forward(request, response);
