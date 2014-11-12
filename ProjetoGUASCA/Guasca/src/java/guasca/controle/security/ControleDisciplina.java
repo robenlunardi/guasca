@@ -27,7 +27,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ControleDisciplina", urlPatterns = {"/ControleDisciplina"})
 public class ControleDisciplina extends HttpServlet {
-
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -56,7 +55,7 @@ public class ControleDisciplina extends HttpServlet {
                 String creditos2 = request.getParameter("creditos2");
                 int turno = (Integer.parseInt(request.getParameter("turno")));
                 String quantAlunos = request.getParameter("quantAlunos");
-                
+
                 Disciplina disciplina = new Disciplina();
                 disciplina.setNome(nomeDisciplina);
                 disciplina.setId_professor1(Integer.parseInt(professor1));
@@ -68,7 +67,7 @@ public class ControleDisciplina extends HttpServlet {
                 disciplina.setQtd_creditos2(Integer.parseInt(creditos2));
                 disciplina.setTurno(turno);
                 disciplina.setQtd_alunos(Integer.parseInt(quantAlunos));
-                
+
                 DisciplinaDao disciplinaDao = new DisciplinaDao();
                 disciplinaDao.cadastrarDisciplina(disciplina);
 
@@ -79,15 +78,15 @@ public class ControleDisciplina extends HttpServlet {
                     List<Area> listaAreas = new ArrayList<Area>();
                     AreaDao aDao = new AreaDao();
                     listaAreas = aDao.buscarAreas();
-                    
+
                     List<Professor> listaProfessores = new ArrayList<Professor>();
                     ProfessorDao pDao = new ProfessorDao();
                     listaProfessores = pDao.buscarProfessores();
-                    
+
                     List<TipoSala> listaTipoSala = new ArrayList<TipoSala>();
                     TipoSalaDao tpDao = new TipoSalaDao();
                     listaTipoSala = tpDao.buscarTiposSalas();
-                                    
+
                     request.setAttribute("listaProfessores", listaProfessores);
                     request.setAttribute("listaAreas", listaAreas);
                     request.setAttribute("listaTipoSala", listaTipoSala);
@@ -118,6 +117,7 @@ public class ControleDisciplina extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

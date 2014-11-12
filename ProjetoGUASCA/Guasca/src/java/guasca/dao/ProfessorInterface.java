@@ -18,4 +18,5 @@ public interface ProfessorInterface {
     public abstract List<Professor> buscarProfessores() throws Exception;
     public abstract Professor buscarProfessoresId(int id) throws Exception;
     public abstract List<Professor> buscarProfessoresSemProfHasInd() throws Exception;
+    public abstract List<Professor> buscarProfessoresPorArea(int idArea) throws Exception;
 }

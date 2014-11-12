@@ -157,4 +157,41 @@ public class ProfessorDao implements ProfessorInterface {
         }
         return retorno;
     }
+
+    @Override
+    public List<Professor> buscarProfessoresPorArea(int idArea) throws Exception {
+        List<Professor> lista = new ArrayList<Professor>();
+
+        Connection conexao = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            StringBuilder query = new StringBuilder();
+            query.append("select p.id_professor, p.nome")
+                    .append(" from professor p ")
+                    .append(" inner join professor_has_area pha on pha.id_professor = p.id_professor ")
+                    .append(" where pha.id_area = ? ");
+
+            conexao = Conexao.abrirConexao();
+            ps = conexao.prepareStatement(query.toString());
+            ps.setInt(1, idArea);
+            rs = ps.executeQuery();
+
+            Professor professor;
+
+            while (rs.next()) {
+                professor = new Professor(
+                        rs.getInt("p.id_professor"), rs.getString("p.nome"));
+                lista.add(professor);
+            }
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            throw new Exception(e.getMessage());
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+        return lista;
+    }
 }
