@@ -12,6 +12,7 @@ import guasca.modelo.Sala;
 import guasca.modelo.TipoSala;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,7 +42,7 @@ public class ControleSala2 extends HttpServlet {
         try {
 
             String action = request.getParameter("action");
-
+                //cadastrar Sala
             if (action.equals("cadastrarSala")) {
 
                 String nome = request.getParameter("nomeSala");
@@ -58,7 +59,41 @@ public class ControleSala2 extends HttpServlet {
                 salaDao.cadastrarSala(sal);
 
                 request.getRequestDispatcher("index.jsp").forward(request, response);
-            } else if (action.equals("listarSala")) {// Parte de consulta ###############################
+           //Atualizar Sala
+            } else if(action.equals("atualizarSala") ){
+            
+                List<TipoSala> listaTipoSala = new ArrayList<TipoSala>();
+                TipoSalaDao tpDao = new TipoSalaDao();
+                listaTipoSala = tpDao.buscarTiposSalas();
+                
+                request.setAttribute("listaTipoSala", listaTipoSala);
+                
+                int idSala;              
+                
+                idSala = Integer.parseInt(request.getParameter("idSala"));
+                    
+                SalaDao salaDao = new SalaDao();
+                 
+                Sala salaAtual;
+                salaAtual = salaDao.buscarSala(idSala);
+
+                request.setAttribute("salaAtual", salaAtual);
+                //Sala x = (Sala)response.getAttribute("salaAtual");
+                request.getRequestDispatcher("atualizarSala.jsp").forward(request, response);
+               //listarr Sala     
+        } else if(action.equals("atualizar") ){
+            
+                String nome = request.getParameter("nomeSala");
+                int id_tipo_sala = Integer.parseInt(request.getParameter("optionTipoSala"));
+                int quantAlunos = Integer.parseInt(request.getParameter("quantidadeAlunos"));
+                int idSala = Integer.parseInt(request.getParameter("idSala"));
+
+                SalaDao salaDao = new SalaDao();
+                salaDao.atualizarSala(nome, quantAlunos, id_tipo_sala, idSala);
+
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                   
+        } else if (action.equals("listarSala")) {// Parte de consulta ###############################
                 try {
 
                     SalaDao sdao = new SalaDao();
