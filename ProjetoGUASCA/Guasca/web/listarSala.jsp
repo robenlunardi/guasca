@@ -14,7 +14,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>lista de Salas</h1>
 
         <form action="ControleSala2">
             <input type="hidden" name="action" value="listarSala"/>
@@ -36,10 +35,12 @@
                                 Sala sal = lista.get(i);
                         %>
                         <tr>
-                            <td headers="nomeSala"><% out.print(sal.getNome());%></td>
+                           <td headers="nomeSala"><% out.print(sal.getNome());%></td>
                             <td headers="tipoSala"><% out.print(sal.getTpSala().getDescricao());%></td>
                             <td headers="quantidadeAlunos"><% out.print(sal.getQuantAlunos());%></td>
-                            <td headers="Acoes" class="colunaAcoes"></td>
+                            <td headers="Acoes" class="colunaAcoes">
+                            <a href="ControleSala2?action=atualizarSala&idSala=<%= sal.getIdSala()%>">Editar</a>
+                            <a href="ControleSala2?action=ExcluirSala&idSala=<%= sal.getIdSala() %>">Excluir</a>
                         </tr>
                         <%
                             }
