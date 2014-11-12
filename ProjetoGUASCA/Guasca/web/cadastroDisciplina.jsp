@@ -52,8 +52,6 @@
                     <%
                         List<TipoSala> tpLista = (List<TipoSala>) request.getAttribute("listaTipoSala");
                     %>
-                    <br>
-                    <br>
                     <label for="optionTipoSala">
                         Tipo de Sala 1:
                     </label>

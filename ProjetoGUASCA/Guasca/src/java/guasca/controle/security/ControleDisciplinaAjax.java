@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ControleDisciplinaAjax", urlPatterns = {"/ControleDisciplinaAjax"})
 public class ControleDisciplinaAjax extends HttpServlet {
-
+    
     private ServletContext context;
 
     /**
@@ -47,7 +47,7 @@ public class ControleDisciplinaAjax extends HttpServlet {
         } finally {
         }
     }
-
+    
     @Override
     public void init(ServletConfig config) throws ServletException {
         this.context = config.getServletContext();
@@ -82,7 +82,7 @@ public class ControleDisciplinaAjax extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
+        
         try {
             int areaSelecionada = Integer.parseInt(request.getParameter("areaDisciplina"));
             System.out.println("AJAX, porra: " + areaSelecionada);
@@ -90,48 +90,59 @@ public class ControleDisciplinaAjax extends HttpServlet {
             List<Professor> lista = new ArrayList<Professor>();
             lista = pDao.buscarProfessoresPorArea(areaSelecionada);
             StringBuilder retorno = new StringBuilder();
-            retorno.append("<label for=\"professor1\">Professor 1:</label>")
-                    .append("<select name=\"professor1\"><option value=\"-1\">Selecione:</option>")
-                    .append("");
-            for (int i = 0; i < lista.size(); i++) {
-                retorno.append("<option value=\"")
-                        .append(lista.get(i).getIdProfessor())
-                        .append("\">");
+            
+            if (lista.size() == 0) {
+                retorno.append("<span>Nenhum professor cadastrado com a Área selecionada</span><br><br>");
+                response.getWriter().write(retorno.toString());
+            } else if(lista.size() == 1){
+                retorno.append("<label for=\"professor1\">Professor 1: </label>")
+                        .append("<select name=\"professor1\"><option value=\"-1\">Selecione:</option>")
+                        .append("");
+                for (int i = 0; i < lista.size(); i++) {
+                    retorno.append("<option value=\"")
+                            .append(lista.get(i).getIdProfessor())
+                            .append("\">")
+                            .append(lista.get(i).getNome())
+                            .append("</option>");
+                }
+                retorno.append("</select><br><br>");
+                response.getWriter().write(retorno.toString());                
             }
+
             /*
              <label for="professor1">
-                        Professor 1:
-                    </label>
-                    <select name="professor1">
-                        <option value="-1">Selecione:</option>
-                        <%
-                            List<Professor> pLista = (List<Professor>) request.getAttribute("listaProfessores");
-                            for (int i = 0; i < pLista.size(); i++) {
+             Professor 1:
+             </label>
+             <select name="professor1">
+             <option value="-1">Selecione:</option>
+             <%
+             List<Professor> pLista = (List<Professor>) request.getAttribute("listaProfessores");
+             for (int i = 0; i < pLista.size(); i++) {
 
-                        %>
-                        <option value="<%= pLista.get(i).getIdProfessor()%>">
-                            <%= pLista.get(i).getNome()%>
-                        </option>
-                        <%
-                            }
-                        %>
-                    </select>
-                    <label for="professor2">
-                        Professor 2:
-                    </label>
-                    <select name="professor2">
-                        <option value="-1">Selecione:</option>
-                        <%
-                            for (int i = 0; i < pLista.size(); i++) {
+             %>
+             <option value="<%= pLista.get(i).getIdProfessor()%>">
+             <%= pLista.get(i).getNome()%>
+             </option>
+             <%
+             }
+             %>
+             </select>
+             <label for="professor2">
+             Professor 2:
+             </label>
+             <select name="professor2">
+             <option value="-1">Selecione:</option>
+             <%
+             for (int i = 0; i < pLista.size(); i++) {
 
-                        %>
-                        <option value="<%= pLista.get(i).getIdProfessor()%>">
-                            <%= pLista.get(i).getNome()%>
-                        </option>
-                        <%
-                            }
-                        %>
-                    </select>
+             %>
+             <option value="<%= pLista.get(i).getIdProfessor()%>">
+             <%= pLista.get(i).getNome()%>
+             </option>
+             <%
+             }
+             %>
+             </select>
              */
             
         } catch (Exception e) {
