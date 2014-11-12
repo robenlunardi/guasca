@@ -48,13 +48,48 @@ public class SalaDao implements SalaInterface {
     }
 
     @Override
-    public void atualizarSala(int idSala) throws Exception {
+    public void atualizarSala (String nome, int quantAlunos, int id_tipo_sala, int idSala) throws Exception {
         /* @@@ implementar @@@*/
+        
+        try {
+            Connection con = Conexao.abrirConexao();
+            
+            PreparedStatement p;
+            p = con.prepareStatement ("update sala set nome = ?, qtdAlunos = ?, id_tipo_sala = ? where id_sala = ?");
+            p.setString(1, nome);
+            p.setInt(2, quantAlunos);
+            p.setInt(3, id_tipo_sala);
+            p.setInt(4, idSala);
+            
+            p.execute();
+            
+            p.close();
+            con.close();
+        } catch (Exception ex) {
+            throw new Exception ("Erro: "+ex.getMessage());
+        }
     }
 
     @Override
     public void deletarSala(int idSala) throws Exception {
         /* @@@ implementar @@@*/
+        
+        try {
+            Connection con = Conexao.abrirConexao();
+            
+            PreparedStatement p;
+            
+            p = con.prepareStatement("delete from sala where id_sala = ?");
+            p.setInt(1, idSala);
+            p.execute();
+   
+            
+            p.close();
+            con.close();
+        } catch (Exception ex) {
+            throw new Exception ("Falha no banco: "+ex.getMessage());
+        }
+        
     }
 
     @Override
@@ -106,4 +141,43 @@ public class SalaDao implements SalaInterface {
         return lista;
 
     }
+    
+     @Override
+    public Sala buscarSala(int idSala) throws Exception {
+        /* @@@ implementar @@@*/
+
+        Connection conexao   = null;
+        PreparedStatement p = null;
+        
+        Sala sala = null;
+
+        try {
+            
+            conexao = Conexao.abrirConexao();
+            p = conexao.prepareStatement("select * from sala where id_sala = ?");
+            p.setInt(1, idSala);
+            
+            ResultSet rs;
+            rs = p.executeQuery();
+            
+            if (rs.next()) {
+                sala = new Sala(
+                        rs.getInt("id_sala"), rs.getString("nome"), rs.getInt("qtdAlunos"));           
+            }
+            
+            p.close();
+            rs.close();
+            conexao.close();            
+            
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            throw new Exception(e.getMessage());
+        } finally {
+            p.close();
+            conexao.close();
+        }
+        
+        return sala;
+    }    
+    
 }
