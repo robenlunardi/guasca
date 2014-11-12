@@ -56,6 +56,34 @@
                         <%
                             List<TipoSala> tpLista = (List<TipoSala>) request.getAttribute("listaTipoSala");
                         %>
+<<<<<<< .mine
+                    </select>
+                    <br><br>
+                    <div id="msg">
+                    </div>
+                    <%
+                        List<TipoSala> tpLista = (List<TipoSala>) request.getAttribute("listaTipoSala");
+                    %>
+                    
+                    <label for="optionTipoSala1">
+                        Tipo de Sala 1:
+                    </label>
+                    <select id="optionTipoSala1" name="optionTipoSala1">
+                        <%
+                            if (tpLista.size() == 0) {
+                        %>
+                        <option value="-1">Inexiste um Tipo de Sala</option>
+                        <%                        } else {
+                        %>
+                        <option value="0">Selecione:</option>
+                        <%
+                            for (int i = 0; i < tpLista.size(); i++) {
+                        %>
+                        <option value="<%= tpLista.get(i).getIdTipoSala()%>">
+                            <%= tpLista.get(i).getDescricao()%>
+                        </option>
+                        <%
+=======
 
                         <label for="optionTipoSala">
                             Tipo de Sala 1:
@@ -76,6 +104,7 @@
                             </option>
                             <%
                                     }
+>>>>>>> .r62
                                 }
                             %>
                         </select>  
@@ -105,6 +134,42 @@
                             <%
                                     }
                                 }
+<<<<<<< .mine
+                            }
+                        %>
+                    </select>
+                    <label for="creditos2">
+                        Créditos:
+                    </label>
+                    <input type="text" id="creditos2" name="creditos2">
+                    <br><br>
+                    <label class="radioManha" for="manha" >
+                        Turno:
+                    </label>
+                    <input type="radio" id="manha" name="turno" value="1" checked/>
+                    <label class="radioManha" for="turno" >
+                        Manhã
+                    </label>
+                    <input type="radio" id="tarde" name="turno" value="2"/>
+                    <label class="radioTarde" for="turno">
+                        Tarde
+                    </label>
+                    <input type="radio" id="noite" name="turno" value="3"/>
+                    <label class="radioNoite" for="turno">
+                        Noite
+                    </label>
+                    <br><br>
+                    <label for="quantAlunos">
+                        Quantidade Alunos
+                    </label>
+                    <input type="text" id="quantAlunos" name="quantAlunos" maxlength="2" >
+                    <br><br>
+                    <input class="botaoForm" type="submit" value="Cadastrar">
+                    <input class="botaoForm" type="button" value="Cancelar">
+                </div>
+            </fieldset>
+        </form>
+=======
                             %>
                         </select>
                         <label for="creditos2">
@@ -139,5 +204,6 @@
                 </fieldset>
             </form>
         </div>
+>>>>>>> .r62
     </body>
 </html>
