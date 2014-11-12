@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ControleDisciplina", urlPatterns = {"/ControleDisciplina"})
 public class ControleDisciplina extends HttpServlet {
+
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -45,33 +46,157 @@ public class ControleDisciplina extends HttpServlet {
             String action = request.getParameter("action");
 
             if (action.equals("cadastrarDisciplina")) {
-                String nomeDisciplina = request.getParameter("nomeDisciplina");
-                String professor1 = request.getParameter("professor1");
-                String professor2 = request.getParameter("professor2");
-                String areaDisciplina = request.getParameter("areaDisciplina");
-                String tipoSala1 = request.getParameter("tipoSala1");
-                String creditos1 = request.getParameter("creditos1");
-                String tipoSala2 = request.getParameter("tipoSala2");
-                String creditos2 = request.getParameter("creditos2");
-                int turno = (Integer.parseInt(request.getParameter("turno")));
-                String quantAlunos = request.getParameter("quantAlunos");
+                String seguranca = null;
+                boolean bProf1 = false;
+                boolean bProf2 = false;
+                boolean bTipoSala2 = false;
+                String nomeDisciplina;
+                int areaDisciplina = 0;
+                int turno;
+                int qtdAlunos = 0;
+                int tipoSala1 = 0;
+                int credito1 = 0;
+                int tipoSala2 = 0;
+                int credito2 = 0;
+                int professor1 = 0;
+                int professor2 = 0;
+                //nome obrigatorio
 
-                Disciplina disciplina = new Disciplina();
-                disciplina.setNome(nomeDisciplina);
-                disciplina.setId_professor1(Integer.parseInt(professor1));
-                disciplina.setId_professor2(Integer.parseInt(professor2));
-                disciplina.setId_area(Integer.parseInt(areaDisciplina));
-                disciplina.setTipo_sala1(tipoSala1);
-                disciplina.setQtd_creditos1(Integer.parseInt(creditos1));
-                disciplina.setTipo_sala2(tipoSala2);
-                disciplina.setQtd_creditos2(Integer.parseInt(creditos2));
-                disciplina.setTurno(turno);
-                disciplina.setQtd_alunos(Integer.parseInt(quantAlunos));
 
-                DisciplinaDao disciplinaDao = new DisciplinaDao();
-                disciplinaDao.cadastrarDisciplina(disciplina);
+                nomeDisciplina = request.getParameter("nomeDisciplina");
+                if (nomeDisciplina.equals("") || nomeDisciplina == null) {
+                    request.setAttribute("mensagem", "Disciplina não cadastrada: nome indefinido.");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
 
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                //area obrigatorio
+                seguranca = null;
+                seguranca = request.getParameter("areaDisciplina");
+
+                if (seguranca.equals("") || seguranca == null) {
+                    request.setAttribute("mensagem", "Disciplina não cadastrada: nenhuma área foi seleiconada.");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                } else {
+                    areaDisciplina = Integer.parseInt(seguranca);
+                    if (areaDisciplina <= 0) {
+                        request.setAttribute("mensagem", "Disciplina não cadastrada: nenhuma área foi seleiconada.");
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                    } else {
+                        seguranca = null;
+                        seguranca = request.getParameter("professor1");
+                        if (!seguranca.equals("") || seguranca != null) {
+                            professor1 = Integer.parseInt(request.getParameter("professor1"));
+                            bProf1 = true;
+                        }else{
+                            //nada de erro
+                        }
+                        seguranca = null;
+                        seguranca = request.getParameter("professor2");
+                        if (!seguranca.equals("") || seguranca != null) {
+                            professor2 = Integer.parseInt(request.getParameter("professor2"));
+                            bProf2 = true;
+                        }else{
+                            //nada de erro
+                        }
+
+                    }
+                }
+
+                seguranca = null;
+                seguranca = request.getParameter("optionTipoSala1");
+                tipoSala1 = 0;
+                if (seguranca.equals("") || seguranca == null) {
+                    request.setAttribute("mensagem", "Disciplina não cadastrada: nenhum tipo de sala foi selecionado.");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                } else {
+                    tipoSala1 = Integer.parseInt(request.getParameter("optionTipoSala1"));
+                    if (tipoSala1 <= 0) {
+                        request.setAttribute("mensagem", "Disciplina não cadastrada: nenhum tipo de sala foi selecionado.");
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                    }
+                }
+
+                seguranca = null;
+                seguranca = request.getParameter("creditos1");
+                credito1 = 0;
+                if (seguranca.equals("") || seguranca == null) {
+                    request.setAttribute("mensagem", "Disciplina não cadastrada: crédito indefinido.");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                } else {
+                    credito1 = Integer.parseInt(request.getParameter("optionTipoSala1"));
+                    if (credito1 <= 0) {
+                        request.setAttribute("mensagem", "Disciplina não cadastrada: crédito indefinido.");
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                    } else {
+                        credito1 = Integer.parseInt(request.getParameter("creditos1"));
+                    }
+                }
+
+                seguranca = null;
+                seguranca = request.getParameter("optionTipoSala2");
+                tipoSala2 = 0;
+                credito2 = 0;
+                if (seguranca.equals("") || seguranca == null) {
+                    //nada
+                } else {
+                    tipoSala1 = Integer.parseInt(request.getParameter("optionTipoSala2"));
+                    if (tipoSala1 <= 0) {
+                        //nada
+                    } else {
+                        seguranca = null;
+                        seguranca = request.getParameter("creditos2");
+                        credito2 = 0;
+                        if (seguranca.equals("") || seguranca == null) {
+                            //nada
+                        } else {
+                            credito2 = Integer.parseInt(request.getParameter("optionTipoSala2"));
+                            if (credito2 <= 0) {
+                            } else {
+                                credito2 = Integer.parseInt(request.getParameter("creditos2"));
+                                bTipoSala2 = true;
+                            }
+                        }
+                    }
+
+                }
+
+                seguranca = null;
+                seguranca = request.getParameter("quantAlunos");
+                qtdAlunos = 0;
+                if (seguranca.equals("") || seguranca == null) {
+                    request.setAttribute("mensagem", "Disciplina não cadastrada: quantidade de alunos indefinida.");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                } else {
+                    qtdAlunos = Integer.parseInt(request.getParameter("quantAlunos"));
+                    if (qtdAlunos <= 0) {
+                        request.setAttribute("mensagem", "Disciplina não cadastrada: quantidade de alunos indefinida.");
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                    }
+                }
+
+                turno = Integer.parseInt(request.getParameter("turno"));
+
+                //public Disciplina(String nome, int id_area, int turno, int qtd_alunos, int tipo_sala1, int qtd_creditos1)
+                Disciplina nova;
+                if (bTipoSala2) {
+                    nova = new Disciplina(
+                            nomeDisciplina, areaDisciplina, turno, qtdAlunos, tipoSala1, credito1, tipoSala2, credito2);
+                } else {
+                    nova = new Disciplina(
+                            nomeDisciplina, areaDisciplina, turno, qtdAlunos, tipoSala1, credito1);
+                }
+                if (bProf1) {
+                    nova.setId_professor1(professor1);
+                }
+                if (bProf2) {
+                    nova.setId_professor2(professor2);
+                }
+                
+                DisciplinaDao dDao = new DisciplinaDao();
+                if (dDao.cadastrarDisciplina(nova)) {
+                    request.setAttribute("mensagem", "Disciplina cadastrada com sucesso.");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
 
             } else if (action.equals("carregarListas")) {
                 try {
@@ -117,7 +242,6 @@ public class ControleDisciplina extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

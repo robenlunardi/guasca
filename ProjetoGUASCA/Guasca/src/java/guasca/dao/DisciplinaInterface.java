@@ -12,7 +12,7 @@ import java.util.List;
  * @author Paula
  */
 public interface DisciplinaInterface {
-    public abstract void cadastrarDisciplina(Disciplina nova) throws Exception;
+    public abstract boolean cadastrarDisciplina(Disciplina nova) throws Exception;
     public abstract void atualizarDisciplina(int idDisciplina) throws Exception;
     public abstract void deletarDisciplina(int idDisciplina) throws Exception;
     public abstract List<Disciplina> buscarDisciplinas() throws Exception;

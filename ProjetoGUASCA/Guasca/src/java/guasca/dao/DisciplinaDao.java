@@ -23,21 +23,25 @@ public class DisciplinaDao implements DisciplinaInterface{
     
  
     @Override
-    public void cadastrarDisciplina(Disciplina nova) throws Exception {
+    public boolean cadastrarDisciplina(Disciplina nova) throws Exception {
         Connection conexao = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+        boolean retorno = false;
 
         try {
 
             conexao = Conexao.abrirConexao();
-            ps = conexao.prepareStatement("insert into disciplina (nome, qtdAlunos, turno, tipo_sala1, tipo_sala2) values (?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+            ps = conexao.prepareStatement("insert into disciplina (nome, qtdAlunos, turno, tipo_sala1, tipo_sala2) values (?,?,?,?,?)");
+            //ps = conexao.prepareStatement("insert into disciplina (nome, qtdAlunos, turno, tipo_sala1, tipo_sala2) values (?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
 
             ps.setString(1, nova.getNome());
             ps.setInt(2, nova.getQtd_alunos());
             ps.setInt(3, nova.getTurno());
-            ps.setString(4, nova.getTipo_sala1());
-            ps.setString(5, nova.getTipo_sala2());
+            ps.setInt(4, nova.getTipo_sala1());
+            ps.setInt(5, nova.getTipo_sala2());
+            ps.execute();
+            /*
             ps.executeUpdate();
             
             rs = ps.getGeneratedKeys();
@@ -47,14 +51,16 @@ public class DisciplinaDao implements DisciplinaInterface{
             }
             
             cadastrarCreditos(nova);
-
+            * */
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             throw new Exception(e.getMessage());
         } finally {
             ps.close();
             conexao.close();
+            retorno = true;
         }
+        return retorno;
     }
     
     public void cadastrarCreditos(Disciplina nova) throws Exception{
@@ -109,36 +115,7 @@ public class DisciplinaDao implements DisciplinaInterface{
 
     @Override
     public List<Disciplina> buscarDisciplinas() throws Exception {
-        List<Disciplina> lista = new ArrayList<Disciplina>();
-
-        Connection conexao   = null;
-        PreparedStatement ps = null;
-        ResultSet rs         = null;
-
-        try {
-            
-            conexao = Conexao.abrirConexao();
-            ps = conexao.prepareStatement("select * from disciplina");
-            rs = ps.executeQuery();
-            
-            Disciplina disciplina;
-            
-            while(rs.next()){
-                disciplina = new Disciplina(
-                          rs.getInt("id_disciplina")
-                        , rs.getString("nome"));
-                lista.add(disciplina);
-            }
-            
-            
-        } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
-            throw new Exception(e.getMessage());
-        } finally {
-            ps.close();
-            conexao.close();
-        }
-
-        return lista;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
+
 }
