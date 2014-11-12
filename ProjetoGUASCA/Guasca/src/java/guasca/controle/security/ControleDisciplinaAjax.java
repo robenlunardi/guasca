@@ -103,7 +103,7 @@ public class ControleDisciplinaAjax extends HttpServlet {
                             .append(lista.get(i).getIdProfessor())
                             .append("\">")
                             .append(lista.get(i).getNome())
-                            .append("</option>");
+                            .append("</option>");                    
                 }
                 retorno.append("</select><br><br>");
                 response.getWriter().write(retorno.toString());                
