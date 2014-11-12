@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ControleDisciplinaAjax", urlPatterns = {"/ControleDisciplinaAjax"})
 public class ControleDisciplinaAjax extends HttpServlet {
-    
+
     private ServletContext context;
 
     /**
@@ -47,7 +47,7 @@ public class ControleDisciplinaAjax extends HttpServlet {
         } finally {
         }
     }
-    
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         this.context = config.getServletContext();
@@ -82,31 +82,69 @@ public class ControleDisciplinaAjax extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
         try {
             int areaSelecionada = Integer.parseInt(request.getParameter("areaDisciplina"));
-            System.out.println("AJAX, porra: " + areaSelecionada);
             ProfessorDao pDao = new ProfessorDao();
             List<Professor> lista = new ArrayList<Professor>();
             lista = pDao.buscarProfessoresPorArea(areaSelecionada);
             StringBuilder retorno = new StringBuilder();
-            
-            if (lista.size() == 0) {
-                retorno.append("<span>Nenhum professor cadastrado com a Área selecionada</span><br><br>");
-                response.getWriter().write(retorno.toString());
-            } else if(lista.size() == 1){
-                retorno.append("<label for=\"professor1\">Professor 1: </label>")
-                        .append("<select name=\"professor1\"><option value=\"-1\">Selecione:</option>")
-                        .append("");
-                for (int i = 0; i < lista.size(); i++) {
+
+            if (areaSelecionada < 0) {
+            } else {
+                if (lista.size() == 0) {
+                    retorno.append("<span>Nenhum professor cadastrado com a Área selecionada</span><br><br>");
+                } else if (lista.size() == 1) {
+                    retorno.append("<label for=\"professor1\">Professor 1: </label>")
+                            .append("<select name=\"professor1\"><option value=\"-1\">Selecione:</option>");
                     retorno.append("<option value=\"")
-                            .append(lista.get(i).getIdProfessor())
+                            .append(lista.get(0).getIdProfessor())
                             .append("\">")
-                            .append(lista.get(i).getNome())
-                            .append("</option>");                    
+                            .append(lista.get(0).getNome())
+                            .append("</option>");
+                    retorno.append("</select><br><br>");
+                } else if (lista.size() == 2) {
+                    retorno.append("<label for=\"professor1\">Professor 1: </label>")
+                            .append("<select name=\"professor1\"><option value=\"-1\">Selecione:</option>");
+                    retorno.append("<option value=\"")
+                            .append(lista.get(0).getIdProfessor())
+                            .append("\">")
+                            .append(lista.get(0).getNome())
+                            .append("</option>");
+                    retorno.append("</select>");
+                    retorno.append("&nbsp&nbsp<label for=\"professor2\">Professor 2: </label>")
+                            .append("<select name=\"professor2\"><option value=\"-1\">Selecione:</option>");
+                    retorno.append("<option value=\"")
+                            .append(lista.get(1).getIdProfessor())
+                            .append("\">")
+                            .append(lista.get(1).getNome())
+                            .append("</option>");
+                    retorno.append("</select><br><br>");
+                } else {
+                    retorno.append("<label for=\"professor1\">Professor 1: </label>")
+                            .append("<select name=\"professor1\"><option value=\"-1\">Selecione:</option>")
+                            .append("");
+                    for (int i = 0; i < lista.size(); i++) {
+                        retorno.append("<option value=\"")
+                                .append(lista.get(i).getIdProfessor())
+                                .append("\">")
+                                .append(lista.get(i).getNome())
+                                .append("</option>");
+                    }
+                    retorno.append("</select>");
+                    retorno.append("&nbsp&nbsp<label for=\"professor2\">Professor 2: </label>")
+                            .append("<select name=\"professor2\"><option value=\"-1\">Selecione:</option>")
+                            .append("");
+                    for (int i = 0; i < lista.size(); i++) {
+                        retorno.append("<option value=\"")
+                                .append(lista.get(i).getIdProfessor())
+                                .append("\">")
+                                .append(lista.get(i).getNome())
+                                .append("</option>");
+                    }
+                    retorno.append("</select><br><br>");
                 }
-                retorno.append("</select><br><br>");
-                response.getWriter().write(retorno.toString());                
+                response.getWriter().write(retorno.toString());
             }
 
             /*
@@ -144,7 +182,7 @@ public class ControleDisciplinaAjax extends HttpServlet {
              %>
              </select>
              */
-            
+
         } catch (Exception e) {
             request.setAttribute("mensagem", e.getMessage());
             request.getRequestDispatcher("erro.jsp").forward(request, response);
