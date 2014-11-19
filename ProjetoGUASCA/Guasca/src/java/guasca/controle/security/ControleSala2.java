@@ -60,29 +60,29 @@ public class ControleSala2 extends HttpServlet {
 
                 request.getRequestDispatcher("index.jsp").forward(request, response);
            //Atualizar Sala
-            } else if(action.equals("atualizarSala") ){
-            
+            } else if (action.equals("atualizarSala")) {
+
                 List<TipoSala> listaTipoSala = new ArrayList<TipoSala>();
                 TipoSalaDao tpDao = new TipoSalaDao();
                 listaTipoSala = tpDao.buscarTiposSalas();
-                
+
                 request.setAttribute("listaTipoSala", listaTipoSala);
-                
-                int idSala;              
-                
+
+                int idSala;
+
                 idSala = Integer.parseInt(request.getParameter("idSala"));
-                    
+
                 SalaDao salaDao = new SalaDao();
-                 
+
                 Sala salaAtual;
                 salaAtual = salaDao.buscarSala(idSala);
 
                 request.setAttribute("salaAtual", salaAtual);
                 //Sala x = (Sala)response.getAttribute("salaAtual");
                 request.getRequestDispatcher("atualizarSala.jsp").forward(request, response);
-               //listarr Sala     
-        } else if(action.equals("atualizar") ){
-            
+                //listarr Sala     
+            }else if (action.equals("atualizar")) {
+
                 String nome = request.getParameter("nomeSala");
                 int id_tipo_sala = Integer.parseInt(request.getParameter("optionTipoSala"));
                 int quantAlunos = Integer.parseInt(request.getParameter("quantidadeAlunos"));
@@ -91,9 +91,17 @@ public class ControleSala2 extends HttpServlet {
                 SalaDao salaDao = new SalaDao();
                 salaDao.atualizarSala(nome, quantAlunos, id_tipo_sala, idSala);
 
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-                   
-        } else if (action.equals("listarSala")) {// Parte de consulta ###############################
+                request.getRequestDispatcher("ControleSala2?action=listarSala").forward(request, response);
+
+            }else if (action.equals("ExcluirSala")) {
+                int idSala = Integer.parseInt(request.getParameter("idSala"));
+                
+                SalaDao sdao = new SalaDao();
+                sdao.deletarSala(idSala);
+                
+                request.getRequestDispatcher("ControleSala2?action=listarSala").forward(request, response);
+
+            }else if (action.equals("listarSala")) {// Parte de consulta ###############################
                 try {
 
                     SalaDao sdao = new SalaDao();
