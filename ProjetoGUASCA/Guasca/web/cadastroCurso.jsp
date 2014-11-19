@@ -18,7 +18,7 @@
             <%@include file="menuAdmin.jsp" %>
         </div>
         <div id="conteudo" class="conteudoCentro">
-            <form action="ControleCurso">
+            <form name="formCadastroCurso" id="" action="ControleCurso" onsubmit="return validarCurso();">
                 <input type="hidden" name="action" value="cadastrarCurso"/>
                 <fieldset class="fieldsetForm">
                     <legend>Cadastro de Curso</legend>

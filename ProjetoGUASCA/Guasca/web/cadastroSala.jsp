@@ -20,7 +20,7 @@
             <%@include file="menuAdmin.jsp" %>
         </div>
         <div id="conteudo" class="conteudoCentro">
-            <form action="ControleSala2">
+            <form action="ControleSala2" name="formCadastroSala" id="formCadastroSala" onsubmit="return validarSala();">
                 <input type="hidden" name="action" value="cadastrarSala"/>
                 <fieldset class="fieldsetForm">
                     <legend>Cadastro de sala</legend>
