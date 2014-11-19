@@ -48,6 +48,15 @@ public class DisciplinaDao implements DisciplinaInterface {
             }
             ps = null;
             rs = null;
+
+            if (nova.getId_curso() > 0) {
+                ps = conexao.prepareStatement("insert into curso_has_disciplina (id_disciplina, id_curso) values (?,?)");
+                ps.setInt(1, id_disciplina);
+                ps.setInt(2, nova.getId_curso());
+                ps.execute();
+                ps = null;
+            }
+
             if (nova.getId_professor1() > 0) {
                 ps = conexao.prepareStatement("insert into disciplina_has_professor (id_disciplina, id_professor) values (?,?)");
                 ps.setInt(1, id_disciplina);
@@ -100,7 +109,7 @@ public class DisciplinaDao implements DisciplinaInterface {
                 }
                 ps = null;
                 rs = null;
-                
+
                 ps = conexao.prepareStatement("insert into disciplina_has_credito (id_credito, id_disciplina, id_tipo_sala) values (?,?,?)");
                 ps.setInt(1, this.id_credito2);
                 ps.setInt(2, id_disciplina);

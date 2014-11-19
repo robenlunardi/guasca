@@ -11,6 +11,7 @@ package guasca.modelo;
 public class Disciplina {
 
     private int id_disciplina;
+    private int id_curso;
     private String nome;
     private int id_area;
     private int turno;
@@ -37,8 +38,9 @@ public class Disciplina {
         this.id_credito = -1;
     }
 
-    public Disciplina(String nome, int id_area, int turno, int qtd_alunos, int tipo_sala1, int qtd_creditos1) {
+    public Disciplina(String nome, int id_curso, int id_area, int turno, int qtd_alunos, int tipo_sala1, int qtd_creditos1) {
         this.nome = nome;
+        this.id_curso = id_curso;
         this.id_area = id_area;
         this.turno = turno;
         this.qtd_alunos = qtd_alunos;
@@ -53,8 +55,9 @@ public class Disciplina {
         this.id_credito = -1;
     }
 
-    public Disciplina(String nome, int id_area, int turno, int qtd_alunos, int tipo_sala1, int qtd_creditos1, int tipo_sala2, int qtd_creditos2) {
+    public Disciplina(String nome, int id_curso, int id_area, int turno, int qtd_alunos, int tipo_sala1, int qtd_creditos1, int tipo_sala2, int qtd_creditos2) {
         this.nome = nome;
+        this.id_curso = id_curso;
         this.id_area = id_area;
         this.turno = turno;
         this.qtd_alunos = qtd_alunos;
@@ -67,6 +70,14 @@ public class Disciplina {
         this.id_professor2 = -1;
         this.id_disciplina = -1;
         this.id_credito = -1;
+    }
+
+    public int getId_curso() {
+        return id_curso;
+    }
+
+    public void setId_curso(int id_curso) {
+        this.id_curso = id_curso;
     }
 
     public int getId_disciplina() {

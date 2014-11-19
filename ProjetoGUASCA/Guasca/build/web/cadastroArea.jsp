@@ -20,7 +20,7 @@
         <div id="conteudo" class="conteudoCentro">
             <form action="ControleArea">
                 <input type="hidden" name="action" value="cadastrarArea"/>
-                <fieldset>
+                <fieldset class="fieldsetForm">
                     <legend>Cadastro de Área</legend>
                     <br>
                     <label for="descricaoArea">

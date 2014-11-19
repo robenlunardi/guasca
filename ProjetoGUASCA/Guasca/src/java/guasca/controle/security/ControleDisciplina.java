@@ -5,10 +5,12 @@
 package guasca.controle.security;
 
 import guasca.dao.AreaDao;
+import guasca.dao.CursoDao;
 import guasca.dao.DisciplinaDao;
 import guasca.dao.ProfessorDao;
 import guasca.dao.TipoSalaDao;
 import guasca.modelo.Area;
+import guasca.modelo.Curso;
 import guasca.modelo.Disciplina;
 import guasca.modelo.Professor;
 import guasca.modelo.TipoSala;
@@ -50,6 +52,7 @@ public class ControleDisciplina extends HttpServlet {
                 boolean bProf1 = false;
                 boolean bProf2 = false;
                 boolean bTipoSala2 = false;
+                int cursoDisciplina = 0;
                 String nomeDisciplina;
                 int areaDisciplina = 0;
                 int turno;
@@ -62,6 +65,17 @@ public class ControleDisciplina extends HttpServlet {
                 int professor2 = 0;
                 //nome obrigatorio
 
+                seguranca = request.getParameter("cursoDisciplina");
+                if (seguranca.equals("") || seguranca == null) {
+                    request.setAttribute("mensagem", "Disciplina não cadastrada: nenhum curso foi selecionado.");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                } else {
+                    cursoDisciplina = Integer.parseInt(seguranca);
+                    if (cursoDisciplina < 1) {
+                        request.setAttribute("mensagem", "Disciplina não cadastrada: nenhum curso foi selecionado.");
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                    }
+                }
 
                 nomeDisciplina = request.getParameter("nomeDisciplina");
                 if (nomeDisciplina.equals("") || nomeDisciplina == null) {
@@ -106,7 +120,7 @@ public class ControleDisciplina extends HttpServlet {
                 }
                 seguranca = null;
                 seguranca = request.getParameter("optionTipoSala1");
-                
+
                 if (seguranca.equals("") || seguranca == null) {
                     request.setAttribute("mensagem", "Disciplina não cadastrada: nenhum tipo de sala foi selecionado.");
                     request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -181,10 +195,10 @@ public class ControleDisciplina extends HttpServlet {
                 Disciplina nova;
                 if (bTipoSala2) {
                     nova = new Disciplina(
-                            nomeDisciplina, areaDisciplina, turno, qtdAlunos, tipoSala1, credito1, tipoSala2, credito2);
+                            nomeDisciplina, cursoDisciplina, areaDisciplina, turno, qtdAlunos, tipoSala1, credito1, tipoSala2, credito2);
                 } else {
                     nova = new Disciplina(
-                            nomeDisciplina, areaDisciplina, turno, qtdAlunos, tipoSala1, credito1);
+                            nomeDisciplina, cursoDisciplina, areaDisciplina, turno, qtdAlunos, tipoSala1, credito1);
                 }
                 if (bProf1) {
                     nova.setId_professor1(professor1);
@@ -201,6 +215,11 @@ public class ControleDisciplina extends HttpServlet {
 
             } else if (action.equals("carregarListas")) {
                 try {
+
+                    List<Curso> listaCursos = new ArrayList<Curso>();
+                    CursoDao cDao = new CursoDao();
+                    listaCursos = cDao.buscarCursos();
+
                     List<Area> listaAreas = new ArrayList<Area>();
                     AreaDao aDao = new AreaDao();
                     listaAreas = aDao.buscarAreas();
@@ -213,8 +232,11 @@ public class ControleDisciplina extends HttpServlet {
                     TipoSalaDao tpDao = new TipoSalaDao();
                     listaTipoSala = tpDao.buscarTiposSalas();
 
-                    request.setAttribute("listaProfessores", listaProfessores);
+
+
+                    request.setAttribute("listaCursos", listaCursos);
                     request.setAttribute("listaAreas", listaAreas);
+                    request.setAttribute("listaProfessores", listaProfessores);
                     request.setAttribute("listaTipoSala", listaTipoSala);
                     //request.setAttribute("listasala", lista);
                     request.getRequestDispatcher("cadastroDisciplina.jsp").forward(request, response);

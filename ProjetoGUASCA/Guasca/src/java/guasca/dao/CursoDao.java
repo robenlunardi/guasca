@@ -61,7 +61,7 @@ public class CursoDao implements CursoInterface {
         try {
 
             conexao = Conexao.abrirConexao();
-            ps = conexao.prepareStatement("select * from area use index (idx_area_nome)");
+            ps = conexao.prepareStatement("select * from curso");
             rs = ps.executeQuery();
 
             Curso curso;

@@ -4,6 +4,7 @@
     Author     : Paula
 --%>
 
+<%@page import="guasca.modelo.Curso"%>
 <%@page import="guasca.modelo.TipoSala"%>
 <%@page import="guasca.modelo.Professor"%>
 <%@page import="guasca.modelo.Area"%>
@@ -29,6 +30,27 @@
                     <div class="rowElem">
                         <br>
                         <br>
+
+                        <label for="cursoDisciplina">
+                            Curso:
+                        </label>
+                        <select name="cursoDisciplina" id="cursoDisciplina" >
+                            <option value="-1">Selecione:</option>
+                            <%
+                                List<Curso> cLista = (List<Curso>) request.getAttribute("listaCursos");
+                                for (int i = 0; i < cLista.size(); i++) {
+
+                            %>
+                            <option value="<%= cLista.get(i).getIdCurso() %>">
+                                <%= cLista.get(i).getNome() %>
+                            </option>
+                            <%
+                                }
+                            %>
+                        </select>
+                        <br><br>
+
+
                         <label for="nomeDisciplina">
                             Nome:
                         </label>
