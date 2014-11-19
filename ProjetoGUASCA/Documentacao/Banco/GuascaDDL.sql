@@ -10,7 +10,7 @@ USE `guasca` ;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`area` (
   `id_area` INT(11) NOT NULL AUTO_INCREMENT ,
-  `nome` VARCHAR(45) NOT NULL ,
+  `nome` VARCHAR(100) NOT NULL ,
   PRIMARY KEY (`id_area`) ,
   INDEX `idx_area_nome` (`nome` ASC) )
 ENGINE = InnoDB
@@ -54,7 +54,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`curso` (
   `id_curso` INT(11) NOT NULL AUTO_INCREMENT ,
-  `nome` VARCHAR(45) NOT NULL ,
+  `nome` VARCHAR(100) NOT NULL ,
   PRIMARY KEY (`id_curso`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
@@ -66,7 +66,7 @@ DEFAULT CHARACTER SET = latin1;
 CREATE  TABLE IF NOT EXISTS `guasca`.`disciplina` (
   `id_disciplina` INT(11) NOT NULL AUTO_INCREMENT ,
   `qtdAlunos` INT(3) NOT NULL ,
-  `nome` VARCHAR(45) NOT NULL ,
+  `nome` VARCHAR(100) NOT NULL ,
   `turno` INT NOT NULL ,
   `id_area` INT(11) NULL DEFAULT NULL ,
   PRIMARY KEY (`id_disciplina`) ,
@@ -86,8 +86,8 @@ DEFAULT CHARACTER SET = latin1;
 CREATE  TABLE IF NOT EXISTS `guasca`.`professor` (
   `id_professor` INT(11) NOT NULL AUTO_INCREMENT ,
   `matricula` VARCHAR(7) NOT NULL ,
-  `nome` VARCHAR(45) NOT NULL ,
-  `email` VARCHAR(45) NOT NULL ,
+  `nome` VARCHAR(100) NOT NULL ,
+  `email` VARCHAR(100) NOT NULL ,
   PRIMARY KEY (`id_professor`) )
 ENGINE = InnoDB
 AUTO_INCREMENT = 6
@@ -137,7 +137,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `guasca`.`tipo_sala` (
   `id_tipo_sala` INT NOT NULL AUTO_INCREMENT ,
-  `nome` VARCHAR(45) NOT NULL ,
+  `nome` VARCHAR(100) NOT NULL ,
   PRIMARY KEY (`id_tipo_sala`) )
 ENGINE = InnoDB;
 
@@ -148,7 +148,7 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `guasca`.`sala` (
   `id_sala` INT(11) NOT NULL AUTO_INCREMENT ,
   `qtdAlunos` INT(11) NOT NULL ,
-  `nome` VARCHAR(45) NOT NULL ,
+  `nome` VARCHAR(100) NOT NULL ,
   `id_tipo_sala` INT NOT NULL ,
   PRIMARY KEY (`id_sala`) ,
   INDEX `fk_sala_tipo_sala1_idx` (`id_tipo_sala` ASC) ,
