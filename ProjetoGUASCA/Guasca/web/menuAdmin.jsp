@@ -15,6 +15,14 @@
                 <li><a href="#">Teste</a></li>
             </ul>
         </li>
+        <li>
+            <h3><span class=""></span>Curso</h3>
+            <ul>
+                <li><a href="ControleGeral?formulario=cadastroCurso">Cadastrar Curso</a></li>
+                <li><a href="#">Teste</a></li>
+                <li><a href="#">Teste</a></li>
+            </ul>
+        </li>
         <!-- we will keep this LI open by default -->
         <li class="">
             <h3><span class=""></span>Professor</h3>
