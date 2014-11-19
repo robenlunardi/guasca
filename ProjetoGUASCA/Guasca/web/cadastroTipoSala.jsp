@@ -19,7 +19,7 @@
         <div id="conteudo" class="conteudoCentro">
             <form action="ControleSala2" class="form">
                 <input type="hidden" name="action" value="cadastrarTipoSala"/>
-                <fieldset class="form">
+                <fieldset class="fieldsetForm">
                     <legend>Cadastro de Tipo de Sala</legend>
                     <br>
                     <label for="descricaoTipoSala">

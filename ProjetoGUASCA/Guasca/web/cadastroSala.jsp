@@ -12,20 +12,25 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/estilos-gerais.css" />
+        <%@include file="includes.jsp" %>
         <title>Cadastro de Salas</title>
     </head>
     <body>
-        <form action="ControleSala2">
-            <input type="hidden" name="action" value="cadastrarSala"/>
-            <fieldset>
-                <legend>Cadastro de sala</legend>
-                <br>
-                <label for="nomeSala">
-                    Nome:
-                </label>
-                <input type="text" id="nomeSala" name="nomeSala"><br><br>
-                
-                <br>
+        <div id="menu" class="menuLateral">
+            <%@include file="menuAdmin.jsp" %>
+        </div>
+        <div id="conteudo" class="conteudoCentro">
+            <form action="ControleSala2">
+                <input type="hidden" name="action" value="cadastrarSala"/>
+                <fieldset class="fieldsetForm">
+                    <legend>Cadastro de sala</legend>
+                    <br>
+                    <label for="nomeSala">
+                        Nome:
+                    </label>
+                    <input type="text" id="nomeSala" name="nomeSala"><br><br>
+
+                    <br>
                     <%
                         List<TipoSala> tpLista = (List<TipoSala>) request.getAttribute("listaTipoSala");
                     %>
@@ -34,11 +39,10 @@
                     </label>
                     <select id="optionTipoSala" name="optionTipoSala">
                         <%
-                        if(tpLista.size() == 0){
+                            if (tpLista.size() == 0) {
                         %>
                         <option value="-1">Inexiste um Tipo de Sala</option>
-                        <%
-                        }else{
+                        <%                        } else {
                         %>
                         <option value="0">Selecione:</option>
                         <%
@@ -48,23 +52,24 @@
                             <%= tpLista.get(i).getDescricao()%>
                         </option>
                         <%
+                                }
                             }
-                        }
                         %>
                     </select>                
-                <br>
-                <br>
-                <br>
-                <label for="quantidadeAlunos">
-                    Quantidade de Alunos:
-                </label>
-                <input type="text" id="quantidadeAlunos" name="quantidadeAlunos"><br><br>
-                <br>
+                    <br>
+                    <br>
+                    <br>
+                    <label for="quantidadeAlunos">
+                        Quantidade de Alunos:
+                    </label>
+                    <input type="text" id="quantidadeAlunos" name="quantidadeAlunos"><br><br>
+                    <br>
 
-                <input class="botaoForm" type="submit" value="Cadastrar">
-               
-            </fieldset>
-        </form>
+                    <input class="botaoForm" type="submit" value="Cadastrar">
+
+                </fieldset>
+            </form>
+        </div>
     </body>
 </html>
 

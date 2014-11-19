@@ -24,7 +24,7 @@
         <div id="conteudo" class="conteudoCentro">
             <form action="ControleDisciplina" method="POST" name="formCadastroDisciplina" id="formCadastroDisciplina">
                 <input type="hidden" name="action" value="cadastrarDisciplina"/>
-                <fieldset>
+                <fieldset class="fieldsetForm">
                     <legend>Cadastro de Disciplina</legend>
                     <div class="rowElem">
                         <br>

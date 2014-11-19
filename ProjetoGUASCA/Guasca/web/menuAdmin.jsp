@@ -16,7 +16,7 @@
             </ul>
         </li>
         <!-- we will keep this LI open by default -->
-        <li class="active">
+        <li class="">
             <h3><span class=""></span>Professor</h3>
             <ul>
                 <li><a href="ControleGeral?formulario=cadastroProfessor">Cadastrar Professor</a></li>
@@ -36,8 +36,8 @@
             <h3><span class=""></span>Sala</h3>
             <ul>
                 <li><a href="ControleGeral?formulario=cadastroTipoSala">Cadastrar Tipo de Sala</a></li>
-                <li><a href="ControleGeral?formulario=consultaDisponibilidadeSala">Cadastrar Sala</a></li>
-                <li><a href="#">Teste</a></li>
+                <li><a href="ControleGeral?formulario=cadastroSala">Cadastrar Sala</a></li>
+                <li><a href="ControleGeral?formulario=listarSala">Listar Sala</a></li>
             </ul>
         </li>
         <li>
