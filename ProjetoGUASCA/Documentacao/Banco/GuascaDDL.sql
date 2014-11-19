@@ -265,6 +265,31 @@ CREATE  TABLE IF NOT EXISTS `guasca`.`professor_has_area` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `guasca`.`curso_has_disciplina`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `guasca`.`curso_has_disciplina` (
+  `id_curso_has_disciplinacol` INT NOT NULL AUTO_INCREMENT ,
+  `id_curso` INT(11) NOT NULL ,
+  `id_disciplina` INT(11) NOT NULL ,
+  INDEX `fk_curso_has_disciplina_disciplina1_idx` (`id_disciplina` ASC) ,
+  INDEX `fk_curso_has_disciplina_curso1_idx` (`id_curso` ASC) ,
+  PRIMARY KEY (`id_curso_has_disciplinacol`) ,
+  CONSTRAINT `fk_curso_has_disciplina_curso1`
+    FOREIGN KEY (`id_curso` )
+    REFERENCES `guasca`.`curso` (`id_curso` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_curso_has_disciplina_disciplina1`
+    FOREIGN KEY (`id_disciplina` )
+    REFERENCES `guasca`.`disciplina` (`id_disciplina` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+USE `guasca` ;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
