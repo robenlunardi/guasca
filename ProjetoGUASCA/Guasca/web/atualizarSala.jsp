@@ -14,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/estilos-gerais.css" />
         <%@include file="includes.jsp" %>
-        <title>Cadastro de Salas</title>
+        <title>Atualizar Sala</title>
     </head>
     <body>
         <%
@@ -26,13 +26,13 @@
         </div>
         <div id="conteudo" class="conteudoCentro">
 
-            <form action="ControleSala2?id=<%= x.getIdSala()%>">
+            <form action="ControleSala2">
                 <input type="hidden" name="action" value="atualizar"/>
                 <fieldset class="fieldsetForm">
                     <legend>Atualizar sala</legend>
 
                     <br>
-                    <input type="hidden" name="id" value="<%= x.getIdSala()%>">
+                    <input type="hidden" name="idSala" value="<%= x.getIdSala()%>">
                     <label for="nomeSala">
                         Nome:
                     </label>
