@@ -20,7 +20,5 @@ public interface CursoInterface {
     public abstract void deletarCurso(int idCurso) throws Exception;
 
     public abstract List<Curso> buscarCursos() throws Exception;
-
-    public abstract List<Curso> buscarCurso(int idCurso) throws Exception;
     
 }
