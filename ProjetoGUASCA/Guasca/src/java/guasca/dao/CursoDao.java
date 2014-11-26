@@ -83,8 +83,4 @@ public class CursoDao implements CursoInterface {
         return lista;
     }
 
-    @Override
-    public List<Curso> buscarCurso(int idCurso) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }
