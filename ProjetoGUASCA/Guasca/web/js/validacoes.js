@@ -124,10 +124,97 @@ function validarSala(){
     return true;
 }
 
+function validarIndisponibilidade(){
+    
+    var a = document.formRegistroInd;
+    
+    if(a.ano.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        a.ano.style.backgroundColor="#dddddd";
+        a.ano.focus();
+        return false;
+    }else{
+        a.ano.style.backgroundColor="#FFFFFF";
+    }
+    
+    if(a.semestre.value == 0){
+        alert("Dados obrigatórios não preenchidos.");
+        a.semestre.style.backgroundColor="#dddddd";
+        a.semestre.focus();
+        return false;
+    }else{
+        a.semestre.style.backgroundColor="#FFFFFF";
+    }
+    
+    return true;
+}
 
-
-//    
-//    if (d.bMotorista[1].checked==false && d.bMotorista[0].checked==false) {
-//        alert("Dados obrigatórios não preenchidos. Selecione se o servidor é ou não motorista!");
-//        return false;
-//    }
+function validarDisciplina(){
+    
+    var a = document.formCadastroDisciplina;
+    
+    if(a.cursoDisciplina.value == -1){
+        alert("Dados obrigatórios não preenchidos.");
+        a.cursoDisciplina.style.backgroundColor="#dddddd";
+        a.cursoDisciplina.focus();
+        return false;
+    }else{
+        a.cursoDisciplina.style.backgroundColor="#FFFFFF";
+    }
+    
+    if(a.nomeDisciplina.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        a.nomeDisciplina.style.backgroundColor="#dddddd";
+        a.nomeDisciplina.focus();
+        return false;
+    }else{
+        a.nomeDisciplina.style.backgroundColor="#FFFFFF";
+    }
+    
+    if(a.areaDisciplina.value == -1){
+        alert("Dados obrigatórios não preenchidos.");
+        a.areaDisciplina.style.backgroundColor="#dddddd";
+        a.areaDisciplina.focus();
+        return false;
+    }else{
+        a.areaDisciplina.style.backgroundColor="#FFFFFF";
+    }
+    
+    if(a.optionTipoSala1.value == 0 && a.optionTipoSala2.value == 0){
+        alert("Selecione pelo menos um tipo de Sala.");
+        a.optionTipoSala1.style.backgroundColor="#dddddd";
+        a.optionTipoSala2.style.backgroundColor="#dddddd";
+        a.optionTipoSala1.focus();
+        return false;
+    }else{
+        a.optionTipoSala1.style.backgroundColor="#FFFFFF";
+        a.optionTipoSala2.style.backgroundColor="#FFFFFF";
+    }
+    
+    if(a.creditos1.value == "" && a.creditos2.value == ""){
+        alert("Preencha pelo menos um Crédito.");
+        a.creditos1.style.backgroundColor="#dddddd";
+        a.creditos2.style.backgroundColor="#dddddd";
+        a.creditos1.focus();
+        return false;
+    }else{
+        a.creditos1.style.backgroundColor="#FFFFFF";
+        a.creditos2.style.backgroundColor="#FFFFFF";
+    }
+    
+    if (a.turno[1].checked==false && a.turno[0].checked==false && a.turno[2].checked==false) {
+        alert("Dados obrigatórios não preenchidos. Selecione se o servidor é ou não motorista!");
+        return false;
+    }
+    
+    if(a.quantAlunos.value == ""){
+        alert("Dados obrigatórios não preenchidos.");
+        a.quantAlunos.style.backgroundColor="#dddddd";
+        a.quantAlunos.focus();
+        return false;
+    }else{
+        a.quantAlunos.style.backgroundColor="#FFFFFF";
+    }
+    
+    return true;
+}

@@ -19,8 +19,8 @@
         <div id="conteudo" class="conteudoCentro">
             <br>
             <br>
-            <form action="ControleInd" class="formularioBasico" name="formRegistroInd">
-                <input type="hidden" name="action" value="registrarInd"/>
+            <form action="ControleInd" class="formularioBasico" name="formRegistroInd" id="formRegistroInd" onsubmit="return validarIndisponibilidade();">
+                <input type="hidden" name="action" value="registrarInd" />
                 <div class="rowElem">
                     <fieldset class="fieldsetForm">
                         <%

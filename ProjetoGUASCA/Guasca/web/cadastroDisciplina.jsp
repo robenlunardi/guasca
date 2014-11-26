@@ -23,7 +23,7 @@
             <%@include file="menuAdmin.jsp" %>
         </div>
         <div id="conteudo" class="conteudoCentro">
-            <form action="ControleDisciplina" method="POST" name="formCadastroDisciplina" id="formCadastroDisciplina">
+            <form action="ControleDisciplina" method="POST" name="formCadastroDisciplina" id="formCadastroDisciplina" onsubmit="return validarDisciplina();">
                 <input type="hidden" name="action" value="cadastrarDisciplina"/>
                 <fieldset class="fieldsetForm">
                     <legend>Cadastro de Disciplina</legend>

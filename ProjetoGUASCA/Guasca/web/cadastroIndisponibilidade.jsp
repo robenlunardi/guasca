@@ -18,7 +18,7 @@
             <%@include file="menuAdmin.jsp" %>
         </div>
         <div id="conteudo" class="conteudoCentro">
-            <form action="ControleProfessor" class="formularioBasico" name="formCadastroProf">
+            <form action="ControleProfessor" class="formularioBasico" name="formCadastroProf" id="formCadastroProf">
                 <input type="hidden" name="action" value="cadastrarProfessor"/>
                 <fieldset class="fieldsetForm">
                     <div class="rowElem">
