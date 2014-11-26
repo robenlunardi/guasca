@@ -11,7 +11,7 @@
             <h3><span class=""></span>Área</h3>
             <ul>
                 <li><a href="ControleGeral?formulario=cadastroArea">Cadastrar Área</a></li>
-                <li><a href="#">Teste</a></li>
+                <li><a href="ControleGeral?formulario=listarArea">Listar Area</a></li>
                 <li><a href="#">Teste</a></li>
             </ul>
         </li>
@@ -19,7 +19,7 @@
             <h3><span class=""></span>Curso</h3>
             <ul>
                 <li><a href="ControleGeral?formulario=cadastroCurso">Cadastrar Curso</a></li>
-                <li><a href="#">Teste</a></li>
+                <li><a href="ControleGeral?formulario=listarCurso">Listar Curso</a></li>
                 <li><a href="#">Teste</a></li>
             </ul>
         </li>
