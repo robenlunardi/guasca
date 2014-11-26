@@ -65,9 +65,25 @@ public class ControleGeral extends HttpServlet {
             } else  if (formulario.equals("consultaDisponibilidadeSala")) {
 
                 request.getRequestDispatcher("consultarDisponibilidadeSalas.jsp").forward(request, response);
-                    //listar
+                    //parte referente as listas
+                    //listar sala
             } else  if (formulario.equals("listarSala")) {
                 request.getRequestDispatcher("ControleSala2?action=listarSala").forward(request, response);
+                  //listar Area
+            } else  if (formulario.equals("listarArea")) {
+                request.getRequestDispatcher("ControleSala2?action=listarArea").forward(request, response);
+                 //listar Curso
+            } else  if (formulario.equals("listarCurso")) {
+                request.getRequestDispatcher("ControleSala2?action=listarCurso").forward(request, response);
+                 //listar Disciplina
+            } else  if (formulario.equals("listarDisciplina")) {
+                request.getRequestDispatcher("ControleSala2?action=listarDisciplina").forward(request, response);
+                  //listar Indisponibilidade
+            } else  if (formulario.equals("listarIndisponibilidade")) {
+                request.getRequestDispatcher("ControleSala2?action=listarIndisponibilidade").forward(request, response);
+                  //listar Professor
+            } else  if (formulario.equals("listarProfessor")) {
+                request.getRequestDispatcher("ControleSala2?action=listarProfessor").forward(request, response);
                 //Atualizar Sala
             }else  if (formulario.equals("atualizarSala")) {
                 request.getRequestDispatcher("ControleSala2?action=atualizarSala").forward(request, response);
