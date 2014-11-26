@@ -6,8 +6,18 @@
 
 package guasca.controle.security;
 
+import guasca.dao.AreaDao;
+import guasca.dao.CursoDao;
+import guasca.dao.DisciplinaDao;
+import guasca.dao.IndisponibilidadeDao;
+import guasca.dao.ProfessorDao;
 import guasca.dao.SalaDao;
 import guasca.dao.TipoSalaDao;
+import guasca.modelo.Area;
+import guasca.modelo.Curso;
+import guasca.modelo.Disciplina;
+import guasca.modelo.Indisponibilidade;
+import guasca.modelo.Professor;
 import guasca.modelo.Sala;
 import guasca.modelo.TipoSala;
 import java.io.IOException;
@@ -100,8 +110,8 @@ public class ControleSala2 extends HttpServlet {
                 sdao.deletarSala(idSala);
                 
                 request.getRequestDispatcher("ControleSala2?action=listarSala").forward(request, response);
-
-            }else if (action.equals("listarSala")) {// Parte de consulta ###############################
+                 // Parte de consulta ###############################
+            }else if (action.equals("listarSala")) {  //listar sala  
                 try {
 
                     SalaDao sdao = new SalaDao();
@@ -117,7 +127,87 @@ public class ControleSala2 extends HttpServlet {
                 }
 
                 throw new Exception("Página não localizada.");
-            }else if(action.equals("cadastrarTipoSala")){
+            }else if (action.equals("listarArea")) {  //listar Area  
+                try {
+
+                    AreaDao adao = new AreaDao();
+                    List<Area> lista = adao.buscarAreas();
+
+                    request.setAttribute("listaarea", lista);
+                    request.getRequestDispatcher("listarArea.jsp").forward(request, response);
+                } catch (Exception e) {
+                    System.out.println("Erro no log: " + e.getCause());
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+
+                }
+
+                throw new Exception("Página não localizada.");
+            }else if (action.equals("listarCurso")) {  //listar Curso 
+                try {
+
+                    CursoDao curdao = new CursoDao();
+                    List<Curso> lista = curdao.buscarCursos();
+
+                    request.setAttribute("listacurso", lista);
+                    request.getRequestDispatcher("listarCurso.jsp").forward(request, response);
+                } catch (Exception e) {
+                    System.out.println("Erro no log: " + e.getCause());
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+
+                }
+
+                throw new Exception("Página não localizada.");
+            }else if (action.equals("listarDisciplina")) {  //listar Disciplina  
+                try {
+
+                    DisciplinaDao disdao = new DisciplinaDao();
+                    List<Disciplina> lista = disdao.buscarDisciplinas();
+
+                    request.setAttribute("listadisciplina", lista);
+                    request.getRequestDispatcher("listarDisciplina.jsp").forward(request, response);
+                } catch (Exception e) {
+                    System.out.println("Erro no log: " + e.getCause());
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+
+                }
+
+                throw new Exception("Página não localizada.");
+            }else if (action.equals("listarIndisponibilidade")) {  //listar Indisponibilidade  
+                try {
+
+                    IndisponibilidadeDao inddao = new IndisponibilidadeDao();
+                    List<Indisponibilidade> lista = inddao.buscarIndisponibilidades();
+
+                    request.setAttribute("listaindisponibilidade", lista);
+                    request.getRequestDispatcher("listarIndisponibilidade.jsp").forward(request, response);
+                } catch (Exception e) {
+                    System.out.println("Erro no log: " + e.getCause());
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+
+                }
+
+                throw new Exception("Página não localizada.");
+            }else if (action.equals("listarProfessor")) {  //listar Professor 
+                try {
+
+                    ProfessorDao prodao = new ProfessorDao();
+                    List<Professor> lista = prodao.buscarProfessores();
+
+                    request.setAttribute("listaprofessor", lista);
+                    request.getRequestDispatcher("listarProfessor.jsp").forward(request, response);
+                } catch (Exception e) {
+                    System.out.println("Erro no log: " + e.getCause());
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+
+                }
+
+                throw new Exception("Página não localizada.");
+            } else if(action.equals("cadastrarTipoSala")){  //cadastro do tipo de sala
                 String descricao = request.getParameter("descricaoTipoSala");
                 TipoSala tipoSala = new TipoSala(descricao);
                 TipoSalaDao tipoSalaDao = new TipoSalaDao();
