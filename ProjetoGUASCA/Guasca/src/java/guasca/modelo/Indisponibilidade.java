@@ -34,6 +34,8 @@ public class Indisponibilidade {
         this.ano = ano;
         this.periodo = periodo;
     }
+    
+   
 
     public int getIdInd() {
         return idInd;

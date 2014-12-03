@@ -24,6 +24,10 @@ public class Disciplina {
     private int qtd_creditos2;
     private int id_credito;
 
+   public Disciplina(int id_disciplina, String nome){
+       
+   }
+   
     public Disciplina() {
         this.id_area = -1;
         this.id_disciplina = -1;
