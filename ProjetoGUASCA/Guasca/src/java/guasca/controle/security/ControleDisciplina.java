@@ -245,7 +245,23 @@ public class ControleDisciplina extends HttpServlet {
                     request.setAttribute("mensagem", e.getMessage());
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
-            } else {
+            } else if (action.equals("listarDisciplina")) {  //listar Disciplina  
+                try {
+
+                    DisciplinaDao disdao = new DisciplinaDao();
+                    List<Disciplina> lista = disdao.buscarDisciplinas();
+
+                    request.setAttribute("listadisciplina", lista);
+                    request.getRequestDispatcher("listarDisciplina.jsp").forward(request, response);
+                } catch (Exception e) {
+                    System.out.println("Erro no log: " + e.getCause());
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+
+                }
+
+                throw new Exception("Página não localizada.");
+            }else {
                 throw new Exception("Página não localizada.");
             }
         } catch (Exception e) {

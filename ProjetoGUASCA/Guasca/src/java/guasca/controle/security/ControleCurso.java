@@ -9,6 +9,7 @@ import guasca.dao.CursoDao;
 import guasca.modelo.Curso;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,6 +50,22 @@ public class ControleCurso extends HttpServlet {
                 request.setAttribute("mensagem", "Curso cadastrado com sucesso.");
                 request.getRequestDispatcher("index.jsp").forward(request, response);
 
+            }else if (action.equals("listarCurso")) {  //listar Curso 
+                try {
+
+                    CursoDao curdao = new CursoDao();
+                    List<Curso> lista = curdao.buscarCursos();
+
+                    request.setAttribute("listacurso", lista);
+                    request.getRequestDispatcher("listarCurso.jsp").forward(request, response);
+                } catch (Exception e) {
+                    System.out.println("Erro no log: " + e.getCause());
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+
+                }
+
+                throw new Exception("Página não localizada.");
             } else {
                 throw new Exception("Página não localizada.");
             }

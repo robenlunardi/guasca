@@ -7,6 +7,7 @@ package guasca.controle.security;
 import guasca.dao.AreaDao;
 import guasca.modelo.Area;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,6 +46,22 @@ public class ControleArea extends HttpServlet {
                 
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 
+            }else if (action.equals("listarArea")) {  //listar Area  
+                try {
+
+                    AreaDao adao = new AreaDao();
+                    List<Area> lista = adao.buscarAreas();
+
+                    request.setAttribute("listaarea", lista);
+                    request.getRequestDispatcher("listarArea.jsp").forward(request, response);
+                } catch (Exception e) {
+                    System.out.println("Erro no log: " + e.getCause());
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+
+                }
+
+                throw new Exception("Página não localizada.");
             }else{
                 throw new Exception("Página não localizada.");
             }

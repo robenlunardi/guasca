@@ -6,8 +6,10 @@ package guasca.controle.security;
 
 import guasca.controle.ferramentas.DiasSemana;
 import guasca.dao.AreaDao;
+import guasca.dao.IndisponibilidadeDao;
 import guasca.dao.ProfessorDao;
 import guasca.modelo.Area;
+import guasca.modelo.Indisponibilidade;
 import guasca.modelo.Professor;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -91,6 +93,38 @@ public class ControleProfessor extends HttpServlet {
                 request.setAttribute("listaProf", lista);
                 request.getRequestDispatcher("listarProfessorInd.jsp").forward(request, response);
 
+            }else if (action.equals("listarProfessor")) {  //listar Professor 
+                try {
+
+                    ProfessorDao prodao = new ProfessorDao();
+                    List<Professor> lista = prodao.buscarProfessores();
+
+                    request.setAttribute("listaprofessor", lista);
+                    request.getRequestDispatcher("listarProfessor.jsp").forward(request, response);
+                } catch (Exception e) {
+                    System.out.println("Erro no log: " + e.getCause());
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+
+                }
+
+                throw new Exception("Página não localizada.");
+            }else if (action.equals("listarIndisponibilidade")) {  //listar Indisponibilidade  
+                try {
+
+                    IndisponibilidadeDao inddao = new IndisponibilidadeDao();
+                    List<Professor> lista = inddao.buscarIndisponibilidade();
+
+                    request.setAttribute("listaindisponibilidade", lista);
+                    request.getRequestDispatcher("listarIndisponibilidade.jsp").forward(request, response);
+                } catch (Exception e) {
+                    System.out.println("Erro no log: " + e.getCause());
+                    request.setAttribute("mensagem", e.getMessage());
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+
+                }
+
+                //throw new Exception("Página não localizada.");
             }else{
                 throw new Exception("Página não localizada.");
             }
