@@ -4,6 +4,7 @@
     Author     : 4DS
 --%>
 
+<%@page import="guasca.modelo.Professor"%>
 <%@page import="guasca.modelo.Sala"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,32 +20,32 @@
             <%@include file="menuAdmin.jsp" %>
         </div>
         <div id="conteudo" class="conteudoCentro">
-            <form action="ControleSala2">
-                <input type="hidden" name="action" value="listarSala"/>
+            <form action="ControleProfessor">
+                <input type="hidden" name="action" value="listarProfessor"/>
                 <fieldset class="fieldsetForm">
-                    <legend>Lista de sala</legend>
+                    <legend>Lista de Professores</legend>
                     <br>    
 
-                    <table class="tabelaListasala" border="1">
+                    <table class="tabelaListaprofessor" border="1">
                         <thead>
-                        <td id="nomeSala" class="colunaDuzentos">Nome</td>
-                        <td id="tipoSala">Tipo</td>
-                        <td id="quantidadeAlunos">Capacidade</td>
+                        <td id="nomeProf" class="colunaDuzentos">Nome</td>
+                        <td id="matriculaProf">Matricula</td>
+                        <td id="emailProf">E-mail</td>
                         <td id="Acoes">Ações</td>
                         </thead>
                         <tbody>
                             <%
-                                List<Sala> lista = (List<Sala>) request.getAttribute("listasala");
+                                List<Professor> lista = (List<Professor>) request.getAttribute("listaprofessor");
                                 for (int i = 0; i < lista.size(); i++) {
-                                    Sala sal = lista.get(i);
+                                    Professor prof = lista.get(i);
                             %>
-                            <tr>
-                                <td headers="nomeSala"><% out.print(sal.getNome());%></td>
-                                <td headers="tipoSala"><% out.print(sal.getTpSala().getDescricao());%></td>
-                                <td headers="quantidadeAlunos"><% out.print(sal.getQuantAlunos());%></td>
+                            <tr>   
+                                <td headers="matriculaProf"><% out.print(prof.getMatricula());%></td>
+                                <td headers="nomeProf"><% out.print(prof.getNome());%></td>
+                                <td headers="emailProf"><% out.print(prof.getEmail());%></td>
                                 <td headers="Acoes" class="colunaAcoes">
-                                    <a href="ControleSala2?action=atualizarSala&idSala=<%= sal.getIdSala()%>">Editar</a>
-                                    <a href="ControleSala2?action=ExcluirSala&idSala=<%= sal.getIdSala()%>">Excluir</a>
+<!--                                    <a href="ControleProfessor?action=atualizarSala&idSala=<>">Editar</a>
+                                    <a href="ControleProfessor?action=ExcluirSala&idSala=<>">Excluir</a>-->
                             </tr>
                             <%
                                 }

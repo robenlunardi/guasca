@@ -28,15 +28,15 @@
             <h3><span class=""></span>Professor</h3>
             <ul>
                 <li><a href="ControleGeral?formulario=cadastroProfessor">Cadastrar Professor</a></li>
-                <li><a href="#">Teste</a></li>
+                <li><a href="ControleGeral?formulario=listarProfessor">lista de Professor</a></li>
                 <li><a href="#">Teste</a></li>
             </ul>
         </li>
         <li>
             <h3><span class=""></span>Indisponibilidade</h3>
             <ul>
-                <li><a href="ControleGeral?formulario=listarProfessorInds">Cadastrar Indisponibilidade</a></li>
-                <li><a href="#">Teste</a></li>
+                <li><a href="ControleGeral?formulario=cadastrarindisponibilidade">Cadastrar Indisponibilidade</a></li>
+                <li><a href="ControleGeral?formulario=listarIndisponibilidade">listar Indisponibilidade</a></li>
                 <li><a href="#">Teste</a></li>
             </ul>
         </li>
@@ -52,7 +52,7 @@
             <h3><span class=""></span>Disciplina</h3>
             <ul>
                 <li><a href="ControleGeral?formulario=cadastroDisciplina">Cadastrar Disciplina</a></li>
-                <li><a href="#">Teste</a></li>
+                <li><a href="ControleGeral?formulario=listarDisciplina">listar Disciplina</a></li>
                 <li><a href="#">Teste</a></li>
                 <li><a href="#">Teste</a></li>
             </ul>

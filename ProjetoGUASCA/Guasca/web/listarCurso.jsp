@@ -20,7 +20,7 @@
             <%@include file="menuAdmin.jsp" %>
         </div>
         <div id="conteudo" class="conteudoCentro">
-            <form action="ControleSala2">
+            <form action="ControleCurso">
                 <input type="hidden" name="action" value="listarCurso"/>
                 <fieldset class="fieldsetForm">
                     <legend>Lista de Cursos</legend>
