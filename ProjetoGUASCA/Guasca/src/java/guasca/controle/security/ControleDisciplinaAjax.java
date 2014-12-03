@@ -82,7 +82,7 @@ public class ControleDisciplinaAjax extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
+        response.setContentType("text/html;charset=UTF-8");
         try {
             int areaSelecionada = Integer.parseInt(request.getParameter("areaDisciplina"));
             ProfessorDao pDao = new ProfessorDao();
