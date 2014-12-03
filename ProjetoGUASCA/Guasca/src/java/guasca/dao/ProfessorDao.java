@@ -87,7 +87,7 @@ public class ProfessorDao implements ProfessorInterface {
 
             while (rs.next()) {
                 professor = new Professor(
-                        rs.getInt("id_professor"), rs.getString("nome"));
+                        rs.getInt("id_professor"), rs.getString("nome"), rs.getString("matricula"), rs.getString("email"));
                 lista.add(professor);
             }
         } catch (Exception e) {

@@ -4,6 +4,7 @@
  */
 package guasca.dao;
 
+
 import guasca.modelo.Disciplina;
 import guasca.util.Conexao;
 import java.sql.Connection;
@@ -23,6 +24,8 @@ public class DisciplinaDao implements DisciplinaInterface {
     private int id_credito2;
     private int id_disciplina;
 
+    
+    
     @Override
     public boolean cadastrarDisciplina(Disciplina nova) throws Exception {
         Connection conexao = null;
@@ -148,6 +151,36 @@ public class DisciplinaDao implements DisciplinaInterface {
 
     @Override
     public List<Disciplina> buscarDisciplinas() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<Disciplina> lista = new ArrayList<Disciplina>();
+
+        Connection conexao = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+
+            conexao = Conexao.abrirConexao();
+            ps = conexao.prepareStatement("select * from disciplina");
+            rs = ps.executeQuery();
+
+            Disciplina disciplina;
+
+            while (rs.next()) {
+                disciplina = new Disciplina(rs.getInt("id_disciplina"), rs.getString("nome"));
+                lista.add(disciplina);
+            }
+
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            throw new Exception(e.getMessage());
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+
+        return lista;
     }
+
+    
 }

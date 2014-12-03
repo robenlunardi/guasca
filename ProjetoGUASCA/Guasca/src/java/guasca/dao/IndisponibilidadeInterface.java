@@ -14,5 +14,5 @@ import java.util.List;
  */
 public interface IndisponibilidadeInterface {
     public abstract void cadastrarInds(int id, List<Indisponibilidade> lista) throws Exception;
-    public abstract List<Indisponibilidade> buscarIndisponibilidades() throws Exception;
+    public abstract List<Professor> buscarIndisponibilidades() throws Exception;
 }

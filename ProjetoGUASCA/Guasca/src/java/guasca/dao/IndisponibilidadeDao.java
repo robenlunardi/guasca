@@ -69,9 +69,41 @@ public class IndisponibilidadeDao implements IndisponibilidadeInterface {
 
     }
 
-    public List<Indisponibilidade> buscarIndisponibilidades() {
+    public List<Professor> buscarIndisponibilidade() throws Exception {
+        List<Professor> lista = new ArrayList<Professor>();
+
+        Connection conexao = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conexao = Conexao.abrirConexao();
+            ps = conexao.prepareStatement("select * from professor");
+            rs = ps.executeQuery();
+
+            Professor professor;
+
+            while (rs.next()) {
+                professor = new Professor(
+                        rs.getInt("id_professor"), rs.getString("nome"));
+                lista.add(professor);
+            }
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            throw new Exception(e.getMessage());
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+        return lista;
+    }
+
+    @Override
+    public List<Professor> buscarIndisponibilidades() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
     
     
 }
