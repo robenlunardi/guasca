@@ -16,4 +16,5 @@ public interface DisciplinaInterface {
     public abstract void atualizarDisciplina(int idDisciplina) throws Exception;
     public abstract void deletarDisciplina(int idDisciplina) throws Exception;
     public abstract List<Disciplina> buscarDisciplinas() throws Exception;
+    public List<Disciplina> buscarDisciplinasPorCurso(int idCurso) throws Exception;
 }

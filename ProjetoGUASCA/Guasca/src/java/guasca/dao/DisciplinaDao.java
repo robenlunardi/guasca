@@ -181,6 +181,54 @@ public class DisciplinaDao implements DisciplinaInterface {
 
         return lista;
     }
+    
+    @Override
+    public List<Disciplina> buscarDisciplinasPorCurso(int idCurso) throws Exception{
+        List<Disciplina> lista = new ArrayList<Disciplina>();
+
+        Connection conexao = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        StringBuilder sql = new StringBuilder();
+
+        try {
+            
+            sql.append("select d.id_disciplina, d.nome, c.id_credito, c.valor from disciplina d ")
+                 .append("inner join curso_has_disciplina chd on chd.id_disciplina = d.id_disciplina ")
+                 .append("inner join disciplina_has_credito dhc on dhc.id_disciplina = chd.id_disciplina ")
+                 .append("inner join credito c on c.id_credito = dhc.id_credito ")
+                 .append("where chd.id_curso = ? order by 1");
+            conexao = Conexao.abrirConexao();
+            ps = conexao.prepareStatement(sql.toString());
+            ps.setInt(1, idCurso);
+            rs = ps.executeQuery();
+
+            Disciplina disciplina;
+            int[] creditos = new int[2];
+            int anterior = 0;
+            while (rs.next()) {
+                    if (anterior != 0 && rs.getInt("id_disciplina") == anterior) {
+                        lista.get(lista.size() - 1).setId_credito2(rs.getInt("id_credito"));
+                        lista.get(lista.size() - 1).setQtd_creditos2(rs.getInt("valor"));
+                    }else{
+                        disciplina = new Disciplina(rs.getInt("id_disciplina"), rs.getString("nome"), rs.getInt("id_credito"), rs.getInt("valor"));
+                        anterior = disciplina.getId_disciplina();
+                        lista.add(disciplina);                        
+                    }
+            }
+
+
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            throw new Exception(e.getMessage());
+        } finally {
+            ps.close();
+            conexao.close();
+        }
+
+        return lista;
+    }
 
     
 }

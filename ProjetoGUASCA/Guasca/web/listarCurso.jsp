@@ -39,9 +39,10 @@
                             %>
                             <tr>
                                 <td headers="nomeCurso"><% out.print(sal.getNome());%></td>
-                                <td headers="Acoes" class="colunaAcoes">
+                                <td headers="Acoes" class="colunaAcoes"><a href="GeradorGrade?action=gerar&idcurso=<%= lista.get(i).getIdCurso() %>">Gerar Grade</a></td>
 <!--                                    <a href="ControleSala2?action=atualizarSala&idSala=<>">Editar</a>
                                     <a href="ControleSala2?action=ExcluirSala&idSala=<>">Excluir</a>-->
+
                             </tr>
                             <%
                                 }

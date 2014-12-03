@@ -4,6 +4,8 @@
     Author     : Douglas
 --%>
 
+<%@page import="guasca.modelo.Disciplina"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -18,12 +20,38 @@
             <%@include file="menuAdmin.jsp" %>
         </div>
         <div id="conteudo" class="conteudoCentro">
-            <%
+            <%                
                 String msg = (String) request.getAttribute("mensagem");
-                if (msg != null) {
+                String grade = (String) request.getAttribute("chaveGrade");
+                if (msg != null && !(msg.equals(""))) {
             %>
             <div id="mensagemErro"><p><%= msg%></p></div>
-            <%                }
+            <%                
+            } else {
+                if (grade != null && !(grade.equals(""))) {
+                    List<Disciplina> listaDisciplina = (List<Disciplina>) request.getAttribute("listaDisciplina");
+                        %>
+                    <table>
+            <%                    
+                    for(int i = 0; i < listaDisciplina.size(); i++){
+                        %>
+                        <tr>
+                            <td>
+                                <%= listaDisciplina.get(i).getNome() %>
+                            </td>
+                        </tr>
+            <%
+                    }
+            %>
+                    </table>
+            <div id="grade"><p>Gerou \o/ <%= grade%></p></div>
+            <%                
+            } else {
+            %>
+            <div id="grade"><p>Numdeu</p></div>
+            <%                        
+                    }
+                }
             %>
         </div>
     </body>

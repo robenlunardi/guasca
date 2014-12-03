@@ -23,11 +23,23 @@ public class Disciplina {
     private int tipo_sala2;
     private int qtd_creditos2;
     private int id_credito;
+    private int id_credito2;
 
-   public Disciplina(int id_disciplina, String nome){
-       
-   }
-   
+    //@@@revisar
+    public Disciplina(int idDisciplina, String nomeDisciplina) {
+        this.id_disciplina = idDisciplina;
+        this.nome = nomeDisciplina;
+    }
+    
+    public Disciplina(int idDisciplina, String nomeDisciplina, int credito1, int valor1) {
+        this.id_disciplina = idDisciplina;
+        this.nome = nomeDisciplina;
+        this.id_credito = credito1;
+        this.qtd_creditos1 = valor1;
+        this.id_credito2 = -1;
+        this.qtd_creditos2 = -1;
+    }
+
     public Disciplina() {
         this.id_area = -1;
         this.id_disciplina = -1;
@@ -40,6 +52,7 @@ public class Disciplina {
         this.qtd_creditos1 = -1;
         this.qtd_creditos2 = -1;
         this.id_credito = -1;
+        this.id_credito2 = -1;
     }
 
     public Disciplina(String nome, int id_curso, int id_area, int turno, int qtd_alunos, int tipo_sala1, int qtd_creditos1) {
@@ -179,5 +192,13 @@ public class Disciplina {
     public void setId_credito(int id_credito) {
         this.id_credito = id_credito;
     }
+    
+    public int getId_credito2() {
+        return id_credito2;
+    }
+
+    public void setId_credito2(int id_credito2) {
+        this.id_credito2 = id_credito2;
+    }    
     
 }
