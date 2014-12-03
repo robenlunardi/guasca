@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastrar Professor</title>
+        <title>Cadastrar Indisponibilidade</title>
         <%@include file="includes.jsp" %>
     </head>
     <body>
@@ -19,10 +19,10 @@
         </div>
         <div id="conteudo" class="conteudoCentro">
             <form action="ControleProfessor" class="formularioBasico" name="formCadastroProf" id="formCadastroProf">
-                <input type="hidden" name="action" value="cadastrarProfessor"/>
+                <input type="hidden" name="action" value="cadastrarindisponibilidade"/>
                 <fieldset class="fieldsetForm">
                     <div class="rowElem">
-                        <legend>Cadastro de Professor</legend>
+                        <legend>Cadastro de indisponibilidade</legend>
                         <br>
                         <br>
                         <div class="rowElem"><label for="nomeProf">Nome:</label><input type="text" name="nomeProf" /></div>
