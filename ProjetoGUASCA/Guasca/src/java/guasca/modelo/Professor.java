@@ -24,6 +24,10 @@ public class Professor {
         this.listaInds = listaInds;
     }
 
+    public Professor(int idProfessor){
+        
+    }
+    
     public Professor(int idProfessor, String nome) {
         this.nome = nome;
         this.idProfessor = idProfessor;
