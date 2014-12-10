@@ -157,7 +157,43 @@ public class ProfessorDao implements ProfessorInterface {
         }
         return retorno;
     }
+     @Override
+    public int buscarProfessor(String matricula) throws Exception {
+        /* @@@ implementar @@@*/
 
+        Connection conexao   = null;
+        PreparedStatement p = null;
+        
+
+        int aux = 0;
+        try {
+            
+            conexao = Conexao.abrirConexao();
+            p = conexao.prepareStatement("select id_professor from professor where matricula = ?");
+            p.setString(1, matricula);
+            
+            ResultSet rs;
+            rs = p.executeQuery();
+            
+            if (rs.next()) {
+                      aux = rs.getInt("id_professor");
+            }
+            
+            p.close();
+            rs.close();
+            conexao.close();            
+            
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            throw new Exception(e.getMessage());
+        } finally {
+            p.close();
+            conexao.close();
+        }
+        
+        return aux;
+    }
+    
     @Override
     public List<Professor> buscarProfessoresPorArea(int idArea) throws Exception {
         List<Professor> lista = new ArrayList<Professor>();

@@ -12,6 +12,7 @@ import java.util.List;
  * @author Paula
  */
 public interface ProfessorInterface {
+    public abstract int buscarProfessor(String matricula) throws Exception;
     public abstract void cadastrarProfessor(Professor nova) throws Exception;
     public abstract void atualizarProfessor(int idProfessor) throws Exception;
     public abstract void deletarProfessor(int idProfessor) throws Exception;

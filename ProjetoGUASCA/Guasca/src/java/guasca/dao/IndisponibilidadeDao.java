@@ -68,7 +68,7 @@ public class IndisponibilidadeDao implements IndisponibilidadeInterface {
         }
 
     }
-
+    
     public List<Professor> buscarIndisponibilidade() throws Exception {
         List<Professor> lista = new ArrayList<Professor>();
 
