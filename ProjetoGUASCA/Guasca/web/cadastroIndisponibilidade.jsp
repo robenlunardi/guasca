@@ -122,30 +122,17 @@
                             </table>
                         </div>
                         <br>
-                        <label for="labelArea">
-                            Área:
-                        </label>
-                        <select name="area">
-                            <option value="-1">Selecione:</option>
-                            <%
-                                List<Area> aLista = (List<Area>) request.getAttribute("listaAreas");
-                                for (int i = 0; i < aLista.size(); i++) {
-
-                            %>
-                            <option value="<%= aLista.get(i).getIdArea()%>">
-                                <%= aLista.get(i).getDescricao()%>
-                            </option>
-                            <%
-                                }
-                            %>
-                        </select>
+                        
+                        <input type="submit" value="Cadastrar" class="botaoForm"/>
+                        <input type="reset" value="Cancelar" class="botaoForm" />
+     
                     </div>
                     <br>
                     <div class="rowElem">
-                        <input type="submit" value="Cadastrar" class="botaoForm"/>
-                        <input type="reset" value="Cancelar" class="botaoForm" />
+                        
                     </div>
                 </fieldset>
+                        
             </form>
         </div>
     </body>
