@@ -41,8 +41,8 @@
                             <tr>
                                 <td headers="nomeProf"><% out.print(ind.getNome());%></td>
                                 <td headers="Acoes" class="colunaAcoes">
-<!--                                    <a href="ControleSala2?action=atualizarSala&idSala=<>">Editar</a>
-                                    <a href="ControleSala2?action=ExcluirSala&idSala=<>">Excluir</a>-->
+                                    <a href="ControleInd?action=atualizarInd&idInd=<>">Editar</a>
+                                    <a href="ControleInd?action=ExcluirInd&idInd=<>">Excluir</a>
                             </tr>
                             <%
                                 }

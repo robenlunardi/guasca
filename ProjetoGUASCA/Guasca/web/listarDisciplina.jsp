@@ -40,8 +40,8 @@
                             <tr>
                                 <td headers="nomeDisciplina"><% out.print(dis.getNome());%></td>
                                 <td headers="Acoes" class="colunaAcoes">
-<!--                                    <a href="ControleSala2?action=atualizarSala&idSala=<>">Editar</a>
-                                    <a href="ControleSala2?action=ExcluirSala&idSala=<>">Excluir</a>-->
+                                    <a href="ControleDisciplina?action=atualizarDisciplina&idDisciplina=<>">Editar</a>
+                                    <a href="ControleDisciplina?action=ExcluirDisciplina&idDisciplina=<>">Excluir</a>
                             </tr>
                             <%
                                 }

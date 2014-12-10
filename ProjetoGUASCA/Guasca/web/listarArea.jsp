@@ -40,8 +40,8 @@
                             <tr>
                                 <td headers="descricaoArea"><% out.print(sal.getDescricao());%></td>
                                 <td headers="Acoes" class="colunaAcoes">
-<!--                                    <a href="ControleSala2?action=atualizarSala&idSala=<>">Editar</a>
-                                    <a href="ControleSala2?action=ExcluirSala&idSala=<>">Excluir</a>-->
+                                    <a href="ControleArea?action=atualizarArea&idArea=<>">Editar</a>
+                                    <a href="ControleArea?action=ExcluirArea&idArea=<>">Excluir</a>
                             </tr>
                             <%
                                 }

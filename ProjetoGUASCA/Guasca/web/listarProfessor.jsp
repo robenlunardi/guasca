@@ -44,8 +44,8 @@
                                 <td headers="nomeProf"><% out.print(prof.getNome());%></td>
                                 <td headers="emailProf"><% out.print(prof.getEmail());%></td>
                                 <td headers="Acoes" class="colunaAcoes">
-<!--                                    <a href="ControleProfessor?action=atualizarSala&idSala=<>">Editar</a>
-                                    <a href="ControleProfessor?action=ExcluirSala&idSala=<>">Excluir</a>-->
+                                    <a href="ControleProfessor?action=atualizarProfessor&idProfessor=<>">Editar</a>
+                                    <a href="ControleProfessor?action=ExcluirProfessor&idProfessor=<>">Excluir</a>
                             </tr>
                             <%
                                 }
