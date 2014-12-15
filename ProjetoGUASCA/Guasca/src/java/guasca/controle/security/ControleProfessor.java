@@ -109,46 +109,14 @@ public class ControleProfessor extends HttpServlet {
                 }
 
                 throw new Exception("Página não localizada.");
-            }else if(action.equals("cadastrarindisponibilidade")){
-                String matricula = request.getParameter("matriculaProf");
-                int id_professor;
-                int segM = Integer.parseInt(request.getParameter("SegM"));
-                int terM = Integer.parseInt(request.getParameter("TerM"));
-                int quaM = Integer.parseInt(request.getParameter("QuaM"));
-                int quiM = Integer.parseInt(request.getParameter("QuiM"));
-                int sexM = Integer.parseInt(request.getParameter("SexM"));
-                int sabM = Integer.parseInt(request.getParameter("SabM"));
-                
-                int segT = Integer.parseInt(request.getParameter("SegT"));
-                int terT = Integer.parseInt(request.getParameter("TerT"));
-                int quaT = Integer.parseInt(request.getParameter("QuaT"));
-                int quiT = Integer.parseInt(request.getParameter("QuiT"));
-                int sexT = Integer.parseInt(request.getParameter("SexT"));
-                int sabT = Integer.parseInt(request.getParameter("SabT"));
-                
-                int segN = Integer.parseInt(request.getParameter("SegN"));
-                int terN = Integer.parseInt(request.getParameter("TerN"));
-                int quaN = Integer.parseInt(request.getParameter("QuaN"));
-                int quiN = Integer.parseInt(request.getParameter("QuiN"));
-                int sexN = Integer.parseInt(request.getParameter("SexN"));
-                int sabN = Integer.parseInt(request.getParameter("SabN"));
-                
-                List<Integer> Indisponibilidade = new ArrayList<Integer>();
-                
-                ProfessorDao pDao = new ProfessorDao();
-                
-                id_professor = pDao.buscarProfessor(matricula);
-                
-                IndisponibilidadeDao iDao = new IndisponibilidadeDao();
-                iDao.cadastrarInds(id_professor, null);
-            }else if (action.equals("listarIndisponibilidade")) {  //listar Indisponibilidade  
-                try {
-
+            }else if (action.equals("listarProfRegistroIndisponibilidade")) {  //listar Indisponibilidade  
+                try {                    
                     IndisponibilidadeDao inddao = new IndisponibilidadeDao();
-                    List<Professor> lista = inddao.buscarIndisponibilidade();
+                    ProfessorDao pDao = new ProfessorDao();
+                    List<Professor> lista = pDao.buscarProfessores();
 
-                    request.setAttribute("listaindisponibilidade", lista);
-                    request.getRequestDispatcher("listarIndisponibilidade.jsp").forward(request, response);
+                    request.setAttribute("listaProf", lista);
+                    request.getRequestDispatcher("listarProfessorInd.jsp").forward(request, response);
                 } catch (Exception e) {
                     System.out.println("Erro no log: " + e.getCause());
                     request.setAttribute("mensagem", e.getMessage());

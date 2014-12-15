@@ -79,8 +79,8 @@ public class ControleGeral extends HttpServlet {
             } else  if (formulario.equals("listarDisciplina")) {
                 request.getRequestDispatcher("ControleDisciplina?action=listarDisciplina").forward(request, response);
                   //listar Indisponibilidade
-            } else  if (formulario.equals("listarIndisponibilidade")) {
-                request.getRequestDispatcher("ControleProfessor?action=listarIndisponibilidade").forward(request, response);
+            } else  if (formulario.equals("listarProfRegistroIndisponibilidade")) {
+                request.getRequestDispatcher("ControleProfessor?action=listarProfRegistroIndisponibilidade").forward(request, response);
                   //listar Professor
             } else  if (formulario.equals("listarProfessor")) {
                 request.getRequestDispatcher("ControleProfessor?action=listarProfessor").forward(request, response);

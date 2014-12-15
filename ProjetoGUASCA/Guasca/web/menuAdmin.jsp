@@ -35,7 +35,7 @@
         <li>
             <h3><span class=""></span>Indisponibilidade</h3>
             <ul>
-                <li><a href="ControleGeral?formulario=cadastrarindisponibilidade">Cadastrar Indisponibilidade</a></li>
+                <li><a href="ControleGeral?formulario=listarProfRegistroIndisponibilidade">Cadastrar Indisponibilidade</a></li>
                 <li><a href="ControleGeral?formulario=listarIndisponibilidade">listar Indisponibilidade</a></li>
                 <li><a href="#">Teste</a></li>
             </ul>
