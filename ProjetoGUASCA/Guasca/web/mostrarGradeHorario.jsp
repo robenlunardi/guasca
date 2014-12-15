@@ -1,6 +1,7 @@
 <%@page import="guasca.controle.gradehorarios.AlgoritmoGrade"%>
 <%@page import="guasca.modelo.Disciplina"%>
 <%@page import="java.util.List"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     List<Disciplina> listaDisciplina = (List<Disciplina>) request.getAttribute("listaDisciplina");
 
