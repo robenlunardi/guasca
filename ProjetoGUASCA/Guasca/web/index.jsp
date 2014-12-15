@@ -29,26 +29,12 @@
             <%                
             } else {
                 if (grade != null && !(grade.equals(""))) {
-                    List<Disciplina> listaDisciplina = (List<Disciplina>) request.getAttribute("listaDisciplina");
-                        %>
-                    <table>
-            <%                    
-                    for(int i = 0; i < listaDisciplina.size(); i++){
-                        %>
-                        <tr>
-                            <td>
-                                <%= listaDisciplina.get(i).getNome() %>
-                            </td>
-                        </tr>
+                    %>
+                    <%@include file="mostrarGradeHorario.jsp" %>
             <%
-                    }
-            %>
-                    </table>
-            <div id="grade"><p>Gerou \o/ <%= grade%></p></div>
-            <%                
             } else {
             %>
-            <div id="grade"><p>Numdeu</p></div>
+            
             <%                        
                     }
                 }
