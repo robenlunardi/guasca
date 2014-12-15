@@ -8,7 +8,7 @@ package guasca.modelo;
  *
  * @author Paula
  */
-public class Disciplina {
+public class Disciplina implements Comparable<Disciplina> {
 
     private int id_disciplina;
     private int id_curso;
@@ -24,20 +24,33 @@ public class Disciplina {
     private int qtd_creditos2;
     private int id_credito;
     private int id_credito2;
+    private int totalCreditos;
+    private boolean alocado;
+
+    public boolean isAlocado() {
+        return alocado;
+    }
+
+    public void setAlocado(boolean alocado) {
+        this.alocado = alocado;
+    }
+    
 
     //@@@revisar
     public Disciplina(int idDisciplina, String nomeDisciplina) {
         this.id_disciplina = idDisciplina;
         this.nome = nomeDisciplina;
     }
-    
-    public Disciplina(int idDisciplina, String nomeDisciplina, int credito1, int valor1) {
+
+    public Disciplina(int idDisciplina, String nomeDisciplina, int credito1, int valor1, int totalCredito) {
         this.id_disciplina = idDisciplina;
         this.nome = nomeDisciplina;
         this.id_credito = credito1;
         this.qtd_creditos1 = valor1;
         this.id_credito2 = -1;
         this.qtd_creditos2 = -1;
+        this.totalCreditos = totalCredito;
+        this.alocado = false;
     }
 
     public Disciplina() {
@@ -192,13 +205,32 @@ public class Disciplina {
     public void setId_credito(int id_credito) {
         this.id_credito = id_credito;
     }
-    
+
     public int getId_credito2() {
         return id_credito2;
     }
 
     public void setId_credito2(int id_credito2) {
         this.id_credito2 = id_credito2;
-    }    
-    
+    }
+
+    public int getTotalCreditos() {
+        return totalCreditos;
+    }
+
+    public void setTotalCreditos(int totalCreditos) {
+        this.totalCreditos = totalCreditos;
+    }
+
+    @Override
+    public int compareTo(Disciplina disciplina) {
+        //Decrescente
+        if (this.qtd_creditos1 > disciplina.getQtd_creditos1()) {
+            return -1;
+        } else if (this.qtd_creditos1 < disciplina.getQtd_creditos1()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 }
