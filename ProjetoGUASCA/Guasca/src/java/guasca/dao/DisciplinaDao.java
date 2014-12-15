@@ -4,7 +4,6 @@
  */
 package guasca.dao;
 
-
 import guasca.modelo.Disciplina;
 import guasca.util.Conexao;
 import java.sql.Connection;
@@ -24,8 +23,6 @@ public class DisciplinaDao implements DisciplinaInterface {
     private int id_credito2;
     private int id_disciplina;
 
-    
-    
     @Override
     public boolean cadastrarDisciplina(Disciplina nova) throws Exception {
         Connection conexao = null;
@@ -181,24 +178,25 @@ public class DisciplinaDao implements DisciplinaInterface {
 
         return lista;
     }
-    
+
     @Override
-    public List<Disciplina> buscarDisciplinasPorCurso(int idCurso) throws Exception{
+    public List<Disciplina> buscarDisciplinasPorCurso(int idCurso) throws Exception {
         List<Disciplina> lista = new ArrayList<Disciplina>();
 
         Connection conexao = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        
+
         StringBuilder sql = new StringBuilder();
 
+        //Desconsiderar uma disciplina: Tópicos
         try {
-            
+
             sql.append("select d.id_disciplina, d.nome, c.id_credito, c.valor from disciplina d ")
-                 .append("inner join curso_has_disciplina chd on chd.id_disciplina = d.id_disciplina ")
-                 .append("inner join disciplina_has_credito dhc on dhc.id_disciplina = chd.id_disciplina ")
-                 .append("inner join credito c on c.id_credito = dhc.id_credito ")
-                 .append("where chd.id_curso = ? order by 1");
+                    .append("inner join curso_has_disciplina chd on chd.id_disciplina = d.id_disciplina ")
+                    .append("inner join disciplina_has_credito dhc on dhc.id_disciplina = chd.id_disciplina ")
+                    .append("inner join credito c on c.id_credito = dhc.id_credito ")
+                    .append("where chd.id_curso = ? order by 1");
             conexao = Conexao.abrirConexao();
             ps = conexao.prepareStatement(sql.toString());
             ps.setInt(1, idCurso);
@@ -207,15 +205,22 @@ public class DisciplinaDao implements DisciplinaInterface {
             Disciplina disciplina;
             int[] creditos = new int[2];
             int anterior = 0;
+            int valorCredito = 0;
             while (rs.next()) {
-                    if (anterior != 0 && rs.getInt("id_disciplina") == anterior) {
-                        lista.get(lista.size() - 1).setId_credito2(rs.getInt("id_credito"));
-                        lista.get(lista.size() - 1).setQtd_creditos2(rs.getInt("valor"));
-                    }else{
-                        disciplina = new Disciplina(rs.getInt("id_disciplina"), rs.getString("nome"), rs.getInt("id_credito"), rs.getInt("valor"));
-                        anterior = disciplina.getId_disciplina();
-                        lista.add(disciplina);                        
-                    }
+                valorCredito = rs.getInt("valor");
+                disciplina = new Disciplina(rs.getInt("id_disciplina"), rs.getString("nome"), rs.getInt("id_credito"), rs.getInt("valor"), rs.getInt("valor"));
+                lista.add(disciplina);
+
+                /*
+                 if (anterior != 0 && rs.getInt("id_disciplina") == anterior) {
+                 lista.get(lista.size() - 1).setId_credito2(rs.getInt("id_credito"));
+                 lista.get(lista.size() - 1).setQtd_creditos2(rs.getInt("valor"));
+                 }else{
+                 disciplina = new Disciplina(rs.getInt("id_disciplina"), rs.getString("nome"), rs.getInt("id_credito"), rs.getInt("valor"));
+                 anterior = disciplina.getId_disciplina();
+                 lista.add(disciplina);
+                 }
+                 * */
             }
 
 
@@ -229,6 +234,4 @@ public class DisciplinaDao implements DisciplinaInterface {
 
         return lista;
     }
-
-    
 }
