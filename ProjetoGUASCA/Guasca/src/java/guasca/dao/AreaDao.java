@@ -17,7 +17,11 @@ import java.util.List;
  * @author Douglas
  */
 public class AreaDao implements AreaInterface {
-
+    /**Método para cadastro de uma nova área no banco de dados.
+     * 
+     * @param nova Objeto para ser cadastrado.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public void cadastrarArea(Area nova) throws Exception {
         /* @@@ implementar @@@*/
@@ -51,7 +55,11 @@ public class AreaDao implements AreaInterface {
     public void deletarArea(int idArea) throws Exception {
         /* @@@ implementar @@@*/
     }
-
+    /** Método para buscar as áreas cadastradas no banco de dados.
+     * 
+     * @return Retorna uma lista com o id e o nome das áreas cadastradas no banco  de dados.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public List<Area> buscarAreas() throws Exception {
         /* @@@ implementar @@@*/
@@ -89,7 +97,12 @@ public class AreaDao implements AreaInterface {
         return lista;
 
     }
-
+    /** Método para buscar as áreas de atuação de um professor.
+     * 
+     * @param idProf Id do professor para busca das áreas de atuação.
+     * @return Retorna uma lista com as áreas de atuação do professor.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public List<Area> buscarAreasProfessor(int idProf) throws Exception {
         List<Area> lista = new ArrayList<Area>();

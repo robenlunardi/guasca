@@ -22,7 +22,11 @@ public class DisciplinaDao implements DisciplinaInterface {
     private int id_credito1;
     private int id_credito2;
     private int id_disciplina;
-
+    /** Método que cadastra uma disciplina no banco de dados.
+     * 
+     * @param nova Objeto para cadastro.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public boolean cadastrarDisciplina(Disciplina nova) throws Exception {
         Connection conexao = null;
@@ -145,7 +149,11 @@ public class DisciplinaDao implements DisciplinaInterface {
     public void deletarDisciplina(int idDisciplina) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
+    /** Método para buscar as disciplinas cadastradas no banco de dados.
+     * 
+     * @return Retorna uma lista com o id e o nome das disciplinas cadastradas no banco de dados.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public List<Disciplina> buscarDisciplinas() throws Exception {
         List<Disciplina> lista = new ArrayList<Disciplina>();
@@ -178,7 +186,12 @@ public class DisciplinaDao implements DisciplinaInterface {
 
         return lista;
     }
-
+    /** Método para buscar as displinas pertencentes a um curso.
+     * 
+     * @param idCurso Id do curso para busca das disciplinas.
+     * @return Lista com as disciplinas respectivas ao curso.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public List<Disciplina> buscarDisciplinasPorCurso(int idCurso) throws Exception {
         List<Disciplina> lista = new ArrayList<Disciplina>();

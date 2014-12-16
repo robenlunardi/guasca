@@ -21,7 +21,12 @@ import java.util.List;
  * @author Douglas
  */
 public class IndisponibilidadeDao implements IndisponibilidadeInterface {
-
+    /** Método para cadastro da indisponibilidade de um professor no banco de dados.
+     * 
+     * @param id Id do professor para cadastro da indisponibilidade.
+     * @param lista Lista com os turnos/dias em que o professor possui indisponibilidade.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public void cadastrarInds(int id, List<Indisponibilidade> lista) throws Exception {
         Connection conexao = null;
@@ -68,7 +73,11 @@ public class IndisponibilidadeDao implements IndisponibilidadeInterface {
         }
 
     }
-    
+    /** Método para buscar professores que possuem alguma indisponibilidade.
+     * 
+     * @return lista dos professores que possuem alguma indisponibilidade.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     public List<Professor> buscarIndisponibilidade() throws Exception {
         List<Professor> lista = new ArrayList<Professor>();
 

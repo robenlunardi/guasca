@@ -19,7 +19,11 @@ import org.eclipse.jdt.internal.compiler.lookup.TypeConstants;
  * @author Paula
  */
 public class ProfessorDao implements ProfessorInterface {
-
+    /** Método para cadastrar um professor no banco de dados.
+     * 
+     * @param prof Objeto para cadastrado.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public void cadastrarProfessor(Professor prof) throws Exception {
         Connection conexao = null;
@@ -69,7 +73,11 @@ public class ProfessorDao implements ProfessorInterface {
     public void deletarProfessor(int idProfessor) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
+    /** Método para buscar professores cadastrados no banco de dados.
+     * 
+     * @return Lista com o id, o nome, a matrícula e o email dos professores cadastrados no banco.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public List<Professor> buscarProfessores() throws Exception {
         List<Professor> lista = new ArrayList<Professor>();
@@ -99,7 +107,11 @@ public class ProfessorDao implements ProfessorInterface {
         }
         return lista;
     }
-
+    /** Método para buscar professorem que não possuem nenhuma indisponibilidade.
+     * 
+     * @return Lista com o id, o nome, a matrícula e o email dos professores cadastrados no banco.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public List<Professor> buscarProfessoresSemProfHasInd() throws Exception {
         List<Professor> lista = new ArrayList<Professor>();
@@ -129,7 +141,12 @@ public class ProfessorDao implements ProfessorInterface {
         }
         return lista;
     }
-
+    /** Método para buscar um professor no banco de dados pelo id.
+     * 
+     * @param id Id do professor para realização da busca.
+     * @return Objeto Professor com o id e o nome do professor.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public Professor buscarProfessoresId(int id) throws Exception {
         Professor retorno = null;
@@ -157,6 +174,12 @@ public class ProfessorDao implements ProfessorInterface {
         }
         return retorno;
     }
+    /** Método para buscar o id de um professor.
+     * 
+     * @param matricula matricula do professor para busca do id do mesmo.
+     * @return id do professor.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
      @Override
     public int buscarProfessor(String matricula) throws Exception {
         /* @@@ implementar @@@*/
@@ -193,7 +216,12 @@ public class ProfessorDao implements ProfessorInterface {
         
         return aux;
     }
-    
+    /** Método para buscar professores por área de atuação.
+     * 
+     * @param idArea id da área para pesquisa dos professores.
+     * @return Lista dos professores respectivos a área.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public List<Professor> buscarProfessoresPorArea(int idArea) throws Exception {
         List<Professor> lista = new ArrayList<Professor>();

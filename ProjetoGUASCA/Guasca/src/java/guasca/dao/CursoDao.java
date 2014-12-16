@@ -17,7 +17,11 @@ import java.util.List;
  * @author Douglas
  */
 public class CursoDao implements CursoInterface {
-
+    /** Método para cadastro de um curso no banco de dados.
+     * 
+     * @param novo Objeto para ser cadastrado.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public void cadastrarCurso(Curso novo) throws Exception {
         Connection conexao = null;
@@ -49,7 +53,11 @@ public class CursoDao implements CursoInterface {
     public void deletarCurso(int idCurso) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
+    /** Método para buscar os cursos cadastrados no banco de dados.
+     * 
+     * @return Retorna uma lista com o id e o nome dos cursos cadastrados banco de dados. 
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public List<Curso> buscarCursos() throws Exception {
         List<Curso> lista = new ArrayList<Curso>();

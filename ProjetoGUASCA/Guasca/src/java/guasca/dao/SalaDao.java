@@ -19,7 +19,11 @@ import java.util.List;
  * @author 4DS
  */
 public class SalaDao implements SalaInterface {
-
+    /** Método para cadastro de uma sala no banco de dados.
+     * 
+     * @param nova Objeto para cadastro.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public void cadastrarSala(Sala nova) throws Exception {
         /* @@@ implementar @@@*/
@@ -46,7 +50,14 @@ public class SalaDao implements SalaInterface {
         }
 
     }
-
+    /** Método para que os dados referentes a uma sala possam ser modificados.
+     * 
+     * @param nome nome da sala que será gravado no banco.
+     * @param quantAlunos quantidade de alunos da sala que será gravado no banco.
+     * @param id_tipo_sala id do tipo de sala que será gravado no banco.
+     * @param idSala id da sala.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public void atualizarSala (String nome, int quantAlunos, int id_tipo_sala, int idSala) throws Exception {
         /* @@@ implementar @@@*/
@@ -69,7 +80,11 @@ public class SalaDao implements SalaInterface {
             throw new Exception ("Erro: "+ex.getMessage());
         }
     }
-
+    /** Método para deletar uma sala do banco de dados.
+     * 
+     * @param idSala id da sala para deleção.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public void deletarSala(int idSala) throws Exception {
         /* @@@ implementar @@@*/
@@ -91,7 +106,11 @@ public class SalaDao implements SalaInterface {
         }
         
     }
-
+    /** Método para buscar as salas cadastradas no banco de dados.
+     * 
+     * @return lista com o id, o nome, a quantidade de alunos e o tipo da sala.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
     @Override
     public List<Sala> buscarSalas() throws Exception {
         /* @@@ implementar @@@*/
@@ -141,7 +160,12 @@ public class SalaDao implements SalaInterface {
         return lista;
 
     }
-    
+    /** Método para buscar uma sala pelo id.
+     * 
+     * @param idSala id da sala para busca.
+     * @return Objeto Sala com o id, o nome e a quantidade de alunos.
+     * @throws Exception Mostra uma menssagem com o errou que ocorreu.
+     */
      @Override
     public Sala buscarSala(int idSala) throws Exception {
         /* @@@ implementar @@@*/
