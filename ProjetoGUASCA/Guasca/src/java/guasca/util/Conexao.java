@@ -12,6 +12,8 @@ import java.sql.DriverManager;
  * @author Douglas
  */
 public class Conexao {
+    /** Método para estabelecer conexão com o banco de dados.
+     */
     public static Connection abrirConexao() throws Exception {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con;
