@@ -13,7 +13,7 @@ public class DiasSemana {
     private String[] diasCabecalho = new String[6];
     private String[] diasIndex = new String[6];
     private char[] turnos = new char[3];
-
+    
     public DiasSemana() {
         this.diasCabecalho = new String[6];
         this.diasIndex = new String[6];
@@ -38,7 +38,7 @@ public class DiasSemana {
         turnos[2] = 'N';
 
     }
-
+    
     public String[] getDiasCabecalho() {
         return this.diasCabecalho;
     }
@@ -50,7 +50,10 @@ public class DiasSemana {
     public char[] getTurnos() {
         return this.turnos;
     }
-    
+    /**Método que uni os dias da semana com os turnos em uma matriz bidimensional.
+     * 
+     * @return Retorna uma matriz com os dias da semana e seus respectivos turnos.
+     */
     public String[][] concatenarDiaTurno(){
         String[][] diaTurno = new String[3][6];
         StringBuilder sb = new StringBuilder();
