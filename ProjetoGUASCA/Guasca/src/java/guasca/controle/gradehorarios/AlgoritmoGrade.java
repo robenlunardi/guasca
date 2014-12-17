@@ -44,7 +44,12 @@ public class AlgoritmoGrade {
     public void baguncaListaLigada() {
         Collections.shuffle(listaLigadaDisciplina);
     }
-
+    /** Método onde são comparados a quantidade de créditos da disciplina com os do dia.
+     * 
+     * @param dia Dia para comparação.
+     * @param periodoAtual Periodo da grade para verificação.
+     * @param quantidade Quantidade de periodos da disciplina.
+     */
     public boolean verificaSeCabe(int dia, int periodoAtual, int quantidade) {
         boolean retorno = false;
 
@@ -61,7 +66,9 @@ public class AlgoritmoGrade {
 
         return retorno;
     }
-
+    /** Método onde as disciplinas são inseridas na grade de horários.
+     * 
+     */
     public boolean insereNaGrade() {
         boolean retorno = false;
         boolean chaveR = false;
@@ -99,7 +106,9 @@ public class AlgoritmoGrade {
         }
         return retorno;
     }
-
+    /** Método onde serão feitas as tentativas de gerar uma grade de horários que atenda aos requisitos.
+     * 
+     */
     public void gerarGrade() {
         geraListaLigadaDisciplina();
         int controle = 0;
@@ -129,7 +138,7 @@ public class AlgoritmoGrade {
     public void setGrade(int[][] grade) {
         this.grade = grade;
     }
-
+   
     public Disciplina[][] getGradeCompleta() {
         geraListaLigadaDisciplina();
 
@@ -153,7 +162,11 @@ public class AlgoritmoGrade {
 
         return this.gradeCompleta;
     }
-
+    /** Método para buscar uma disciplina em uma lista.
+     * 
+     * @param id Id da disciplina para busca.
+     * @return Uma disciplina.
+     */
     private Disciplina achaDisciplinaNaLista(int id) {
         Disciplina retorno = null;
         for (int i = 0; i < this.listaLigadaDisciplina.size(); i++) {
