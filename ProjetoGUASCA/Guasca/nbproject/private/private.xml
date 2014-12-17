@@ -2,6 +2,19 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/erick/Documents/NetBeansProjects/guasca/trunk/ProjetoGUASCA/Guasca/src/java/guasca/dao/AreaDao.java</file>
+            <file>file:/C:/Users/erick/Documents/NetBeansProjects/guasca/trunk/ProjetoGUASCA/Guasca/src/java/guasca/dao/IndisponibilidadeDao.java</file>
+            <file>file:/C:/Users/erick/Documents/NetBeansProjects/guasca/trunk/ProjetoGUASCA/Guasca/src/java/guasca/dao/TipoSalaDao.java</file>
+            <file>file:/C:/Users/erick/Documents/NetBeansProjects/guasca/trunk/ProjetoGUASCA/Guasca/src/java/guasca/util/Conexao.java</file>
+            <file>file:/C:/Users/erick/Documents/NetBeansProjects/guasca/trunk/ProjetoGUASCA/Guasca/src/java/guasca/controle/gradehorarios/AlgoritmoGrade.java</file>
+            <file>file:/C:/Users/erick/Documents/NetBeansProjects/guasca/trunk/ProjetoGUASCA/Guasca/src/java/guasca/controle/gradehorarios/GeradorGrade.java</file>
+            <file>file:/C:/Users/erick/Documents/NetBeansProjects/guasca/trunk/ProjetoGUASCA/Guasca/src/java/guasca/dao/DisciplinaDao.java</file>
+            <file>file:/C:/Users/erick/Documents/NetBeansProjects/guasca/trunk/ProjetoGUASCA/Guasca/src/java/guasca/dao/CursoDao.java</file>
+            <file>file:/C:/Users/erick/Documents/NetBeansProjects/guasca/trunk/ProjetoGUASCA/Guasca/src/java/guasca/dao/ProfessorDao.java</file>
+            <file>file:/C:/Users/erick/Documents/NetBeansProjects/guasca/trunk/ProjetoGUASCA/Guasca/src/java/guasca/controle/ferramentas/DiasSemana.java</file>
+            <file>file:/C:/Users/erick/Documents/NetBeansProjects/guasca/trunk/ProjetoGUASCA/Guasca/src/java/guasca/controle/ferramentas/Utilidades.java</file>
+            <file>file:/C:/Users/erick/Documents/NetBeansProjects/guasca/trunk/ProjetoGUASCA/Guasca/src/java/guasca/dao/SalaDao.java</file>
+        </group>
     </open-files>
 </project-private>
